@@ -1,7 +1,7 @@
 ---
 title: 序列化和反序列化
 date: 2022-05-17 16:35:07
-tags: seralize
+tags: [seralize]
 ---
 
 # 定义

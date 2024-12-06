@@ -1,6 +1,6 @@
 ---
 title: sed和vim替换文本的小区别
-date: 2024-04-25T17:37
+date: 2024-04-25 17:37
 tags:
   - linux
 ---

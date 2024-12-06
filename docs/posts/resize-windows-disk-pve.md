@@ -1,6 +1,6 @@
 ---
 title: pve中给wondows10加磁盘
-date: 2024-04-25T18:15
+date: 2024-04-25 18:15
 tags:
   - pve
   - gparted

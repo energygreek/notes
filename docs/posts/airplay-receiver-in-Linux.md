@@ -1,6 +1,6 @@
 ---
 title: Linux模拟airplay接收器
-date: 2024-05-08T11:08
+date: 2024-05-08 11:08
 tags:
   - iphone
 ---

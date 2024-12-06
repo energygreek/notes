@@ -1,7 +1,7 @@
 ---
 title: sdcc compiler for 51
 date: 2022-04-10 09:25:49
-tags: 51单片机
+tags: [51单片机]
 ---
 
 # 在Linux下使用sdcc进行单片机开发

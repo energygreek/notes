@@ -1,7 +1,7 @@
 ---
 title: 'Install KVM on Debian of aarch64 architecture '
 date: 2020-10-30 16:29:37
-tags: aarch64
+tags: [aarch64]
 ---
 
 # 背景
