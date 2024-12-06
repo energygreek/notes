@@ -1,5 +1,5 @@
 site_name: notes to remmber
-
+site_url: https://energygreek.github.io/notes
 theme:
   name: material
   features:
