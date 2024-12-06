@@ -1,8 +1,7 @@
 ---
 title: add printer in linux
 date: 2020-07-24 17:55:24
-tags:
-  - tool
+tags: tool
 ---
 # linux 添加打印机
 
@@ -68,6 +67,9 @@ Windows Printer via SAMBA
 
 至此，浏览器打印页面就可以看到添加的打印机了
 
+## 分享打印机
+没有分享的时候，只有本机可以使用，当想要给手机使用时，可以勾选分享。此时CUPS会使用mdns广播打印机服务到主机所处的网段，所以手机也必须在这个网段里。
+![[cups_share.png]]
 
 ## 更新
 
