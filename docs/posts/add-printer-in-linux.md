@@ -1,7 +1,7 @@
 ---
 title: add printer in linux
 date: 2020-07-24 17:55:24
-tags: tool
+tags: [tool]
 ---
 # linux 添加打印机
 

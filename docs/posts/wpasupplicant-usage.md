@@ -1,6 +1,6 @@
 ---
 title: wpa管理wifi接口
-date: 2024-05-07T14:52
+date: 2024-05-07 14:52
 tags:
   - raspberrypi
 ---

@@ -1,7 +1,7 @@
 ---
 title: shell scripts learning
 date: 2021-03-31 14:41:09
-tags: shell
+tags: [shell]
 ---
 
 # shell 笔记
