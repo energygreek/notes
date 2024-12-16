@@ -1,10 +1,12 @@
 ---
 title: gdb调试容器内的进程
 date: 2020-07-20 19:24:39
-tags: [c/c++,gdb]
+tags:
+  - c
+  - gdb
 ---
 
-# gdb 
+# gdb调试容器内的进程 
 
 先来个[gdb手册链接](https://undo.io/resources/cppcon-2015-greg-law-give-me-15-minutes-ill-change/)  
 这里记录一下自己常用的技巧
