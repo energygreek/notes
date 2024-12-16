@@ -1,7 +1,7 @@
 ---
 title: advanced marco in c
 date: 2020-11-10 18:48:01
-tags: [c/c++]
+tags: [c/cpp]
 ---
 
 # C的宏定义

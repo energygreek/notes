@@ -2,7 +2,7 @@
 title: gdb调试容器内的进程
 date: 2020-07-20 19:24:39
 tags:
-  - c
+  - c/cpp
   - gdb
 ---
 
