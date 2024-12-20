@@ -1,7 +1,7 @@
 ---
 title: 语法规则-名词修饰名词
 date: 2021-11-03 13:07:55
-tags: [grammer,English]
+tags: [English]
 ---
 
 # 前言
