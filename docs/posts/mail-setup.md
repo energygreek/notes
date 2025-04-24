@@ -63,3 +63,16 @@ set send_charset="utf-8"
 ## mutt使用
 其实不用mutt, 直接用mail也可以，这个默认访问/var/mail/$USER,是Linux默认的邮件工具。 mutt能很方便调用msmtproc来发送邮件。
 
+
+## maildrop in Arch
+又换回Arch了，发现maildrop在AUR里，而且还依赖好几个AUR, 而自己编译只依赖courier-unicode库。
+
+1. 下载courier-unicode源码
+2. ./configure --prefix=$HOME/.local --enable-shared=no --with-pic  # 静态编译，指定安装到用户根目录
+3. make && make install # 必须安装否则编译maildrop的时候找不到这个库，即使指定路径也不行。 
+4. 下载maildrop源码
+5. ./configure --prefix=/home/hst/.local --enable-shared=no # 静态编译，指定安装到用户根目录
+6. make
+7. 验证是静态链接的courier-unicode，确认`ldd ./libs/maildrop/maildrop` 里面没有'courier-unicode'
+
+Arch里面创建用户时默认没有对应的邮箱文件，直接手动创建`sudo touch "/var/spool/mail/$(whoami)"`, 还有chmod

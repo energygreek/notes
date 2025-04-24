@@ -1,7 +1,7 @@
 ---
 title: register
 date: 2020-08-03 13:39:58
-tags: [c/cpp]
+tags: [c/cpp, asm]
 ---
 
 # register 关键字
@@ -110,6 +110,53 @@ rsp表示栈顶指针，指向当前的栈顶
 2. 参数压栈, 可能由调用者压栈，可能由被调用者压栈，影响的是当前的栈顶，继而栈顶影响rbp
 3. 将被调用函数当前的栈顶复制给基地址寄存器。新的rbp == rsp即当前的栈顶。相当于构造了新的函数运行环境
 
+## rbp和rsp
+实例代码，main函数中调用foo函数。
+```c
+int foo(){
+  printf("hello");
+  return 1;
+}
+
+int main(){
+  foo();
+  return 0;
+}
+```
+
+```
+(gdb) disassemble 
+Dump of assembler code for function main:
+   0x0000555555555158 <+0>:	push   %rbp
+   0x0000555555555159 <+1>:	mov    %rsp,%rbp
+   0x000055555555515c <+4>:	mov    $0x0,%eax
+=> 0x0000555555555161 <+9>:	call   0x555555555139 <foo>
+   0x0000555555555166 <+14>:	mov    $0x0,%eax
+   0x000055555555516b <+19>:	pop    %rbp
+   0x000055555555516c <+20>:	ret
+```
+
+1. main 函数> `push %rbp` 将栈底寄存器的值保存到堆栈中
+2. main 函数> `mov %rsp,%rbp` 将当前的栈顶寄存器的值复制到栈底寄存器
+3. main 函数> `mov $0x0,%eax` 将foo函数的返回值初始化成0
+
+
+进入到foo函数中
+```
+(gdb) disassemble 
+Dump of assembler code for function foo:
+   0x0000555555555139 <+0>:	push   %rbp
+   0x000055555555513a <+1>:	mov    %rsp,%rbp
+=> 0x000055555555513d <+4>:	lea    0xec0(%rip),%rax        # 0x555555556004
+   0x0000555555555144 <+11>:	mov    %rax,%rdi
+   0x0000555555555147 <+14>:	mov    $0x0,%eax
+   0x000055555555514c <+19>:	call   0x555555555030 <printf@plt>
+   0x0000555555555151 <+24>:	mov    $0x1,%eax
+   0x0000555555555156 <+29>:	pop    %rbp
+   0x0000555555555157 <+30>:	ret
+End of assembler dump.
+```
+
 
 附录
 ```
@@ -154,3 +201,6 @@ Usage during syscall/function call:
 ```
 
 
+
+## 参考
+https://shikaan.github.io/assembly/x86/guide/2024/09/08/x86-64-introduction-hello.html
