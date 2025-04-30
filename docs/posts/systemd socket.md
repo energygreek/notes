@@ -1,6 +1,7 @@
 ---
 title: systemd socket 服务
 comments: true
+draft: true
 date: 2024-12-26 17:28:29
 tags: [systemd, unix-domain]
 ---
