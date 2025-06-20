@@ -1,0 +1,9 @@
+{
+	"nodes":[
+		{"id":"7eef8bea8b95c4cd","x":-360,"y":-220,"width":250,"height":60,"color":"3","type":"text","text":"ffmpeg"},
+		{"id":"0cfdf546c3008adc","x":80,"y":-340,"width":400,"height":400,"type":"file","file":"docs/posts/notes.md"}
+	],
+	"edges":[
+		{"id":"1c498ca8911aa0c3","fromNode":"7eef8bea8b95c4cd","fromSide":"right","toNode":"0cfdf546c3008adc","toSide":"left"}
+	]
+}

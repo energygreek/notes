@@ -1,0 +1,5 @@
+.vscode/
+.obsidian/
+venv/
+daily/
+site/
