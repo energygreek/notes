@@ -1,10 +1,10 @@
 ---
-title: 使用systemd-tmpfiles来管理临时文件
-date: 2021-05-13 11:01:12
+draft: true
+date: 2021-05-13
 tags: [linux,tmpfile]
 ---
 
-# 前言
+# 使用systemd-tmpfiles来管理临时文件
 vscode使用clangd作为c++的lsp非常好用，可以支持跳转、补全、clang-tidy、提示，但同时也对配置有要求，我的12Gi内存经常不够用而非常卡  
 于是摸索了一下，发现有两个问题：
 1. clangd会占用很多内存 

@@ -1,7 +1,6 @@
 ---
-title: install k8s cluster
-date: 2020-08-23 16:21:06
-tags:  [k8s]
+date: 2020-08-23
+tags:  [k8s,docker]
 ---
 
 # 搭建k8s集群

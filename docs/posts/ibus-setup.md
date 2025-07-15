@@ -1,9 +1,9 @@
 ---
-title: ibus-setup
-date: 2023-08-09 18:19:41
+date: 2023-08-09
 tags: [ibus,linux]
 ---
 
+# ibus-setup
 这里记录下ibus的配置记录，重新安装了系统，默认安装的ibus。之前用的fcitx5还不错，不过都尝试下。遇到两个问题：
 
 ## firefox里面单击选中的文字触发删除

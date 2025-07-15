@@ -1,6 +1,6 @@
 ---
 title: database acronyms
-date: 2023-11-07 18:03:37
+date: 2023-11-07
 tags: [wiki]
 ---
 

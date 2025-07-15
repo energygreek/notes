@@ -1,13 +1,11 @@
 ---
 draft: true
-title: dpdk test speed
 comments: true
-date: 2025-05-22 18:09:03
-tags: []
+date: 2025-05-22
+tags: [dpdk]
 ---
 
-
-# use dpdk-testpmd to test NIC speed
+# dpdk-testpmd to test NIC speed
 
 启动，进入dpdk 交互模式
 

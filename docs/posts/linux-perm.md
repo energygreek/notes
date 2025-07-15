@@ -1,7 +1,7 @@
 ---
-title: linux perm
-date: 2020-11-20 16:37:29
+date: 2020-11-20
 tags: [linux]
+draft: true
 ---
 
 

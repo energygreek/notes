@@ -1,8 +1,7 @@
 ---
 title: bash learning
-date: 2021-05-21 09:25:08
-tags:
-  - bash
+date: 2021-05-21
+tags: [bash]
 ---
 
 
@@ -46,6 +45,16 @@ EXAMPLES
        Generates a compact listing of all the users on the system.
 
 ```
+
+## find -exec 用法
+
+```
+find . -exec grep chrome {} \;
+find . -exec grep chrome {} +
+```
+1. \; 是转义;
+2. {} 会替换成 find出的文件名。
+2. ; 和 + 的区别是： 当;时，grep命令会在每个文件名上执行一次，grep执行多次， 但+时，所有的文件名会将所有的文件名一次进行grep，grep执行一次。
 
 ### 使用awk ORS 分割结果
 

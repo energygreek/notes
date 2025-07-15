@@ -1,6 +1,5 @@
 ---
-title: Linux Interrupts
-date: 2020-10-19 16:15:16
+date: 2020-10-19
 tags: [Linux,内核原理]
 ---
 

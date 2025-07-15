@@ -1,6 +1,5 @@
 ---
-title: install wordpress
-date: 2023-07-08 17:03:12
+date: 2023-07-08
 tags: [wordpress]
 ---
 

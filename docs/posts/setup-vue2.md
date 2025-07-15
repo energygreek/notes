@@ -1,11 +1,12 @@
 ---
 draft: true
-title: setup-vue2
 comments: true
-date: 2025-05-12 16:51:27
-tags: []
+date: 2025-05-12
+tags: [vue,frontend]
 ---
 
+# 初始化vue2
+推荐方法3中的`vue create my-project`
 
 ## method1
 手动创建各种文件

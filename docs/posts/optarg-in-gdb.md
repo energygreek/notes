@@ -1,7 +1,6 @@
 ---
-title: optarg in gdb
-date: 2022-08-19 20:30:33
-tags:
+date: 2022-08-19
+tags: [gdb]
 ---
 
 # gdb中打印optarg永远是0x0, 但是依然能传递参数

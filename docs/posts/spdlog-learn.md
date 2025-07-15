@@ -1,10 +1,9 @@
 ---
-title: spdlog learn
-date: 2021-11-19 09:53:49
-tags: [c/cpp]
+date: 2021-11-19
+tags: [cpp]
 ---
 
-# spdlog
+# spdlog learning
 
 spdlog 支持多spdlog::logger, 适用与多个隔离模块的日志分别保存  
 

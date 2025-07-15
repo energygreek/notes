@@ -1,7 +1,7 @@
 ---
 title: grpc 学习
-date: 2021-04-13 19:04:30
-tags: [grpc,c/cpp]
+date: 2021-04-13
+tags: [grpc,c,cpp]
 ---
 
 # rpc

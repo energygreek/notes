@@ -1,6 +1,6 @@
 ---
 title: 输出缓冲和stdbuf
-date: 2021-08-02 15:53:06
+date: 2021-08-02
 tags: [stdbuf,buffer,linux]
 ---
 

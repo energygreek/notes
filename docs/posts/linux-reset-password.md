@@ -1,7 +1,6 @@
 ---
-title: Linux重置root密码
-date: 2021-01-21 14:14:59
-tags: [linux]
+date: 2021-01-21
+tags: [linux,rhce]
 ---
 
 # rhel系列修改密码

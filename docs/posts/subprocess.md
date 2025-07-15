@@ -1,11 +1,10 @@
 ---
-title: linux子进程使用方法
 comments: true
-date: 2024-12-17 16:24:41
-tags: [fork, exec]
+date: 2024-12-17
+tags: [linux, fork, exec]
 ---
 
-# linux子进程
+# linux子进程使用方法
 Linux的exec(3)是一系列函数。之前总是稀里糊涂地用，这次搞清楚了。
 ```c
        #include <unistd.h>

@@ -1,7 +1,6 @@
 ---
-title: gcc optimize memory function
-date: 2020-1-10 18:48:01
-tags: [c/cpp, gcc]
+date: 2020-01-10
+tags: [c, cpp, gcc]
 ---
 
 # gcc 会优化很多内存相关的调用

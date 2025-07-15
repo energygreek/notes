@@ -1,6 +1,5 @@
 ---
-title: oauth2 认证
-date: 2020-07-23 19:32:55
+date: 2020-07-23
 tags: [tool]
 ---
 

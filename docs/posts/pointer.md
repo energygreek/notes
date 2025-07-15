@@ -1,10 +1,9 @@
 ---
-title: pointer
-date: 2021-12-06 14:03:40
+date: 2021-12-06
 tags: [c]
 ---
 
-# 引题
+# c语言中pointer和array的区别
 
 在stackoverflow上搜到一个有趣[帖子](https://stackoverflow.com/questions/21972465/difference-between-dereferencing-pointer-and-accessing-array-elements)  
 讨论了指针解引用和数组下标访问的区别，而根本原因就是`指针有时不同于数组`，这是《c专家编程》有仔细讨论的，故再看了一遍

@@ -1,6 +1,6 @@
 ---
 title: cmake precompile header
-date: 2022-02-23 11:24:17
+date: 2022-02-23
 tags: [cmake]
 ---
 

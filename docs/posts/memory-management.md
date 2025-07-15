@@ -1,6 +1,5 @@
 ---
-title: 应用程序的内存管理 
-date: 2021-12-01 04:04:11 
+date: 2021-12-01
 tags: [memory, malloc] 
 ---
 

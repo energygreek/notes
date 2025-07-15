@@ -1,8 +1,8 @@
 ---
-title: pve中给wondows10加磁盘
-date: 2024-04-25 18:15:00
+date: 2024-04-25
 tags:
   - pve
+  - vnc
   - gparted
 ---
 # pve中给windows扩容

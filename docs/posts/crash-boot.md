@@ -1,6 +1,6 @@
 ---
 title: crash boot
-date: 2021-01-04 17:47:05
+date: 2021-01-04
 tags: [grub, linux]
 ---
 

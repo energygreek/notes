@@ -1,7 +1,6 @@
 ---
-title: heap sort
-date: 2021-12-13 12:28:28
-tags: [算法,heapsort]
+date: 2021-12-13
+tags: [算法]
 ---
 
 # 堆排序

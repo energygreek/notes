@@ -1,9 +1,9 @@
 ---
-title: firefox manual add search engine
-date: 2024-03-08 17:48:55
-tags:
+date: 2024-03-08
+tags: [firefox]
 ---
 
+# firefox 启用手动添加搜索引擎
 
 1. Open a new tab and type about:config in the address bar
 2. In the search box type: browser.urlbar.update2.engineAliasRefresh

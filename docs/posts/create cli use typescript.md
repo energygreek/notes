@@ -1,12 +1,11 @@
 ---
 draft: true
-title: create cli use typescript
 comments: true
-date: 2025-05-20 09:52:12
+date: 2025-05-20
 tags: [cli,typescript]
 ---
 
-# purpose  
+# implement cli use typescript  
 i have heard that typescript has a lot of packages already, so i tried it with guide of chatgpt.
 
 ## steps of a todo command line cli tool

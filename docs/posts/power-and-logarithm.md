@@ -1,6 +1,6 @@
 ---
 comments: true
-date: 2025-04-27 16:27:34
+date: 2025-04-27
 tags: [math]
 ---
 

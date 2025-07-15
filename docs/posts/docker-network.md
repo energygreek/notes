@@ -1,10 +1,11 @@
 ---
-title: docker network
-date: 2023-07-21 15:55:38
+date: 2023-07-21
 tags: 
   - docker
   - network
 ---
+
+# docker network
 
 记录一次docker的网络问题，以及学到的知识。
 

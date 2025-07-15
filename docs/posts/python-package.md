@@ -1,6 +1,5 @@
 ---
-title: python package
-date: 2020-11-10 10:36:23
+date: 2020-11-10
 tags: [python,包管理]
 ---
 

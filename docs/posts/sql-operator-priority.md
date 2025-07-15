@@ -1,6 +1,5 @@
 ---
-title: sql operator priority
-date: 2020-08-28 20:34:26
+date: 2020-08-28
 tags: [sql]
 ---
 

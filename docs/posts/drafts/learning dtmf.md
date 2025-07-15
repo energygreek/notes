@@ -1,8 +1,7 @@
 ---
-title: learning DTMF
 comments: true
 draft: true
-date: 2025-01-17 17:53:02
+date: 2025-01-17
 tags: [fft, dsp]
 ---
 

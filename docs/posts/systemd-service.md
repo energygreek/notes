@@ -1,10 +1,9 @@
 ---
-title: 创建 systemd 服务
-date: 2021-01-28 15:53:33
-tags: [linux, maintance]
+date: 2021-01-28
+tags: [linux,systemd]
 ---
 
-# 前言
+# 创建 systemd 服务
 
 说一个老话， 现在systemd作为linux的启动管理和服务管理已经越来越重要了， 上周考试也遇到用systemd 来管理容器，这里记录一下如何编写systemd服务
 

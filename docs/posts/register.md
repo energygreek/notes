@@ -1,10 +1,9 @@
 ---
-title: register
-date: 2020-08-03 13:39:58
-tags: [c/cpp, asm]
+date: 2020-08-03
+tags: [c, cpp, asm]
 ---
 
-# register 关键字
+# c 中 register 关键字
 
 register 关键字是c/c++ 里面唯一能操作寄存器的指令，强制将数据存放在寄存器里，而不是放在堆栈里，这样读写速度最快。
 

@@ -1,9 +1,11 @@
 ---
-date: 2021-02-05 15:31:38
+date: 
+ created: 2021-02-05
+ updated: 2025-07-15
 tags: [算法,查找]
 ---
 
-# kmp 子串查找算法
+# 子串查找算法
 
 leetcode的[题目](https://leetcode-cn.com/problems/implement-strstr/), 实现strstr,即查找子字符串
 
@@ -118,3 +120,5 @@ int main()
 
 ```
 
+## 使用哈希区分两个字符串是否一致
+哈希可以利用硬件加速，非常高效

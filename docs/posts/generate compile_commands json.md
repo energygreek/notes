@@ -1,7 +1,6 @@
 ---
-title: generate compile commands json file
 comments: true
-date: 2025-02-28 11:14:10
+date: 2025-02-28
 tags: [clang, dev-tool]
 ---
 

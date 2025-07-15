@@ -1,12 +1,11 @@
 ---
-title: text process
 comments: true
-date: 2025-01-16 17:55:10
-tags: []
+date: 2025-01-16
+tags: [linux,tool]
 ---
 
-# 文本处理
-
+# Linux 文本处理三剑客
+grep awk sed
 
 ## sed 将vmstat的输出转成csv
 

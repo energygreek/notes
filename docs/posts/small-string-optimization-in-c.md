@@ -1,7 +1,6 @@
 ---
-title: small string optimization in c++
-date: 2021-09-22 15:33:50
-tags: [c++, string]
+date: 2021-09-22
+tags: [cpp, string]
 ---
 
 # c++的basic_string优化

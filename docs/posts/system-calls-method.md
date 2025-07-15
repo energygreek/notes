@@ -1,10 +1,9 @@
 ---
-title: system calls method
-date: 2020-11-09 16:13:11
-tags: [linux,系统调用]
+date: 2020-11-09
+tags: [linux,api]
 ---
 
-# 前言
+# system calls method
 
 之前学汇编发现教材和实际的有出入， 书上写的int, 但是汇编不通过，而gcc 反汇编的结果是调用syscall。  
 原来这是两种方式调用方式即： int  0x80 和 syscall  

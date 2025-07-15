@@ -1,11 +1,10 @@
 ---
-title: docker storage
 tags:
   - docker
-date: 2021-08-13 16:55:33
+date: 2021-08-13
 ---
 
-# docker 存储
+# docker storage
 
 docker 有3种方式使用系统存储:
 

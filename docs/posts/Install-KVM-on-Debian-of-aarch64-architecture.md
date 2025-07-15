@@ -1,10 +1,9 @@
 ---
-title: 'Install KVM on Debian of aarch64 architecture '
-date: 2020-10-30 16:29:37
+date: 2020-10-30
 tags: [aarch64]
 ---
 
-# 背景
+# Install KVM on Debian of aarch64 architecture
 
 公司有台arm64位的设备，安装的银河麒麟系统，经验证就是debian 9。  
 现在需要运行更多arm64虚拟机。

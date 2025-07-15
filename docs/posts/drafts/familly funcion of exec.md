@@ -1,11 +1,11 @@
 ---
-title: exec functions
 comments: true
 draft: true
-date: 2025-04-11 11:24:09
+date: 2025-04-11
 tags: [c]
 ---
 
+# exec family functions
 
 ```c
 #include <unistd.h>

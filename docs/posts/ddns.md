@@ -1,6 +1,6 @@
 ---
-title: ddns
-date: 2021-04-14 09:23:37
+draft: true
+date: 2021-04-14
 tags: [ddns]
 ---
 

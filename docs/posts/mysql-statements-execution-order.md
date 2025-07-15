@@ -1,11 +1,10 @@
 ---
-title: mysql sql语句优先级
-date: 2019-1-10 18:48:01
+date: 2019-01-10
 tags:
   - mysql
 ---
 
-# 
+# mysql sql语句优先级
 
 ```
 The actual execution of MySQL statements is a bit tricky. However, the standard does specify the order of interpretation of elements in the query. This is basically in the order that you specify, although I think HAVING and GROUP BY could come after SELECT:

@@ -1,8 +1,10 @@
 ---
-title: huawei change rom
-date: 2021-06-26 12:09:29
-tags:
+draft: true 
+date: 2021-06-26
+tags: [android]
 ---
+
+# huawei change rom
 
 ## reference
 

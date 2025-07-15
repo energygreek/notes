@@ -1,10 +1,9 @@
 ---
-title: shell 文件操作
-date: 2021-07-07 17:20:26
+date: 2021-07-07
 tags: [linux,file]
 ---
 
-
+# shell 中文件操作接口
 
 ## 读行
 

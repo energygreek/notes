@@ -1,13 +1,12 @@
 ---
-title: docker overlay filesystem
-date: 2020-11-18 09:38:41
+date: 2020-11-18
 tags: [docker,filesystem]
 ---
 
 
-# overlay 是docker使用的文件系统，具有分层的特点
+# docker overlay filesystem 
 
-docker使用的文件系统经过很多变化，而且各发行版可能不同。  
+overlay 是docker使用的文件系统，具有分层的特点, docker使用的文件系统经过很多变化，而且各发行版可能不同。  
 执行`docker info ` 查看当前使用的是overlay2
 
 ```

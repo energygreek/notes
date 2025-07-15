@@ -1,7 +1,7 @@
 ---
-date: 2021-10-14 17:57:52
+date: 2021-10-14
 draft: true
-tags: ['c/cpp','thread']
+tags: ['cpp','thread']
 ---
 
 # 线程局部变量

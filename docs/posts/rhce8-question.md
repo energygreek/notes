@@ -1,10 +1,9 @@
 ---
-title: rhce8 question
-date: 2020-08-29 11:40:56
+date: 2020-08-29
 tags: [rhce,linux]
 ---
 
-# 记录一下上课笔记
+# 记录一下rhce8上课笔记
 
 1. 进入nfs，autofs目录卡住，如何退出，应该是进入了D状态 
 2. chrome 需要笔记本插件，js控制插件

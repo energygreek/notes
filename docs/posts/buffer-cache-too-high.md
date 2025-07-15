@@ -1,6 +1,6 @@
 ---
 title: buffer-cache too high
-date: 2021-04-15 16:16:26
+date: 2021-04-15
 tags: [memory,linux]
 ---
 

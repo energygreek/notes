@@ -1,7 +1,7 @@
 ---
 title: arduino-cli usage
 comments: true
-date: 2024-12-13 11:57:32
+date: 2024-12-13
 tags: [arduino]
 ---
 

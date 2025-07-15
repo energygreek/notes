@@ -1,7 +1,7 @@
 ---
 title: amrnb和amrwb的编解码
-date: 2022-12-29 09:15:46
-tags: [音视频]
+date: 2022-12-29
+tags: [media]
 ---
 
 # 目的

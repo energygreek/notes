@@ -1,12 +1,11 @@
 ---
-title: systemd socket 服务
 comments: true
 draft: true
-date: 2024-12-26 17:28:29
+date: 2024-12-26
 tags: [systemd, unix-domain]
 ---
 
-# 起因
+# systemd socket 服务
 一直非常喜欢用unix domain作为nginx和反代服务之间通讯方式， 将能支持的服务软件都尽量走unix domain。因为众所周知比127.0.0.1快，之前也测试过的确如此。
 
 

@@ -1,9 +1,8 @@
 ---
 draft: false
-title: tailcale usage
 comments: true
-date: 2025-04-30 11:09:20
-tags: [tailcale]
+date: 2025-04-30
+tags: [tailcale,pve]
 ---
 
 # tailscale 使用记录

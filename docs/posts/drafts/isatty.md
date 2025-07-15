@@ -1,12 +1,11 @@
 ---
-title: isatty 打印日志
 comments: true
 draft: true
-date: 2025-04-11 11:24:09
-tags: []
+date: 2025-04-11
+tags: [linux,c]
 ---
 
-# 打印日志
+# isatty 打印日志
 程序运行时往文件里写日志时页缓冲，一旦程序奔溃前没有flush就会导致日志截断，但是每次写日志都flush就不如无缓冲的write了。 而往命令行打印日志则是行缓冲，但是会影响使用，如果用nohup来启动，日志还是打印到nohup中了，也是存在截断问题。
 
 通过isatty来判断程序是写往控制台还是文件， 如果不是控制台就往文件里写，并加上flush

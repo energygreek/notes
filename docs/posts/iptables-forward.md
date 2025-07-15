@@ -1,8 +1,9 @@
 ---
-title: iptables forward
-date: 2023-09-19 17:55:21
-tags: [linux]
+date: 2023-09-19
+tags: [linux, iptables]
 ---
+
+# Linux创建热点
 
 iptables 用来配置转发数据包规则的工具，Linux的防火墙配置就是利用的iptables。普通的路由器也是使用的iptables来实现NAT地址转换。
 

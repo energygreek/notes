@@ -1,6 +1,5 @@
 ---
-title: sql learning
-date: 2022-03-21 16:29:09
+date: 2022-03-21
 tags: [sql]
 ---
 

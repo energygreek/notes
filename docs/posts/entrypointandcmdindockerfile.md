@@ -1,10 +1,9 @@
 ---
-title: Dockerfile 中的ENTRYPOINT和CMD的区别
-date: 2020-08-10 15:27:21
+date: 2020-08-10
 tags: [docker]
 ---
 
-# 区别
+# Dockerfile 中ENTRYPOINT和CMD的区别
 
 Dockerfile 中，ENTRYPOINT和CMD来都可以用来设置默认命令，而代替`docker run`时的命令，也可以一起使用  
 

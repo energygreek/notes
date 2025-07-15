@@ -1,6 +1,5 @@
 ---
-title: udp loader balance
-date: 2021-01-15 11:06:27
+date: 2021-01-15
 tags: [socket, udp, socketopt]
 ---
 

@@ -1,7 +1,6 @@
 ---
-title: use mdns in systemd-networkd
-date: 2022-05-23 11:18:18
-tags: [mdns]
+date: 2022-05-23
+tags: [mdns,network]
 ---
 
 # 使用systemd-resolved的mdns

@@ -1,6 +1,7 @@
 ---
-title: mail setup
-date: 2023-07-18 18:24:55
+date: 
+  created: 2023-07-18
+  update: 2025-07-15
 tags: [email, mutt]
 ---
 
@@ -28,6 +29,23 @@ mda "/usr/bin/maildrop"
 keep 方式不会删除服务器上的邮件。然后启动定时任务，自动检查新邮件
 ```
 systemctl --user enable --now fetchmail.service
+```
+
+service 内容
+```
+# /usr/lib/systemd/user/fetchmail.service
+# or any other location per man:systemd.unit(5)
+[Unit]
+Description=Fetchmail Daemon
+Documentation=man:fetchmail(1)
+
+[Service]
+ExecStart=fetchmail --nodetach --daemon 300
+ExecStop=fetchmail --quit
+Restart=always
+
+[Install]
+WantedBy=default.target
 ```
 
 ## 发送配置

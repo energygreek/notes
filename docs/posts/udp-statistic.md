@@ -1,10 +1,9 @@
 ---
-title: udp statistic
-date: 2023-11-03 18:20:28
+date: 2023-11-03
 tags: [debug, linux]
 ---
 
-## udp 两个方便的监控数据
+# udp 查看统计的方法
 
 * /proc/net/snmp
 * /proc/net/udp

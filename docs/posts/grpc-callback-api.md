@@ -1,8 +1,9 @@
 ---
-title: grpc callback api
-date: 2021-04-13 19:04:30
-tags: [c/cpp, grpc]
+date: 2021-04-13
+tags: [c,cpp, grpc]
 ---
+
+# grpc callback api
 
 C++ callback-based asynchronous API
 ----

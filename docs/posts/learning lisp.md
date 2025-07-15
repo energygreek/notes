@@ -1,8 +1,7 @@
 ---
 draft: true
-title: learning lisp
 comments: true
-date: 2025-06-03 13:57:29
+date: 2025-06-03
 tags: [arc, lisp]
 ---
 

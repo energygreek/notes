@@ -1,10 +1,9 @@
 ---
-title: bash-safe
-date: 2020-08-03 19:13:16
-tags: [bash,safe]
+date: 2020-08-03
+tags: [bash]
 ---
 
-# bash 脚本安全
+# bash safety
 
 不管是大厂还是小厂，总能听到一些误操作新闻  
 那避免误操作就办法就是写脚本， 然后也有很多脚本出事的新闻, 通常有以下
@@ -40,7 +39,7 @@ ABC_PATH=abc
 
 ### 添加默认值
 
-path=${ABC_PATH-/} #default /
+path=${ABC_PATH-/} # default /
 
 这样，当ABC_PATH不存在时，就使用默认值'/'
 

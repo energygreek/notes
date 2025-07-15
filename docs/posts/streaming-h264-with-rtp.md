@@ -1,9 +1,9 @@
 ---
-title: streaming h264 with rtp
-date: 2024-02-07 11:34:38
+date: 2024-02-07
 tags: [ffmpeg,rtp,音视频]
 ---
 
+# streaming h264 with rtp
 这里记录了使用ffmpeg来发送h264的rtp流，主要问题是处理pps和sps的发送，看了非常多的文档和例子包括gptchat，直到用gdb跟ffmpeg才找到解决办法。
 
 ## 背景

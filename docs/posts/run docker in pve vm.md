@@ -1,7 +1,6 @@
 ---
-title: run docker in pve vm
 comments: true
-date: 2025-02-07 11:15:34
+date: 2025-02-07
 tags: [pve,docker,lxc]
 ---
 # difference of lxc container and docker container

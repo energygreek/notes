@@ -1,10 +1,9 @@
 ---
-title: huawei unlock bootloader
-date: 2020-11-05 16:01:42
-tags: [android,刷机,lineage]
+date: 2020-11-05
+tags: [android,lineage]
 ---
 
-#  目的
+#  huawei unlock bootloader
 
 解锁华为平板M3的BL锁，以及获取root权限
 

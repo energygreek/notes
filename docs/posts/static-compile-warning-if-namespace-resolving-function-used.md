@@ -1,10 +1,9 @@
 ---
-title: static compile warning if namespace resolving function used
-date: 2021-03-17 10:47:35
-tags: [c/cpp,编译]
+date: 2021-03-17
+tags: [c, cpp,compile]
 ---
 
-# 前言
+# static compile warning if namespace resolving function used
 
 当程序里面有使用到解析函数的时候， 静态编译程序会报warning
 

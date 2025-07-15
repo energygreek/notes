@@ -1,6 +1,6 @@
 ---
 title: cmake learning
-date: 2021-04-07 18:54:01
+date: 2021-04-07
 tags: [cmake]
 ---
 

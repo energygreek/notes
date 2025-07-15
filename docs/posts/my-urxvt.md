@@ -1,10 +1,9 @@
 ---
-title: urxvt配置
-date: 2021-03-25 16:39:47
-tags: [linux,urxvt]
+date: 2021-03-25
+tags: [linux,urxvt,terminal]
 ---
 
-# 前言
+# urxvt配置
 
 自使用arch以来，一直在用urxvt, 它简洁，轻量，但不可否认的有问题，比如中文输入模式长时间时会无法输入中文，配置麻烦, 需要在启动脚本配置.xresource  
 这里要记一下自己的urxvt的配置以做备份  

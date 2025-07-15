@@ -1,13 +1,11 @@
 ---
-title: 在c语言中打印变量
 comments: true
-date: 2022-05-05 18:25:40
+date: 2022-05-05
 tags: [c]
 ---
 
-# print(stringify) variable of different types
-
-`typeof` is a GCC extension, and `_Generic` is part of C11. typeof is disabled by option '-std=*' or '-ansi`, so use `__typeof__` instead. 
+# 在c语言中打印支持不同类型变量
+in this doc, i'll introduce how to print(stringify) variable of different types, `typeof` is a GCC extension, and `_Generic` is part of C11. typeof is disabled by option '-std=*' or '-ansi`, so use `__typeof__` instead. 
 
 ## c11 _Generic
 

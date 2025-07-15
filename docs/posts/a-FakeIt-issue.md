@@ -1,7 +1,7 @@
 ---
 title: 记一个FakeIt使用问题
-date: 2022-05-05 18:25:40
-tags: ['unittest']
+date: 2022-05-05
+tags: [unittest]
 ---
 
 # FakeIt

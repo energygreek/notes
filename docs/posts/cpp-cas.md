@@ -1,6 +1,5 @@
 ---
-title: cpp cas
-date: 2022-03-10 21:40:39
+date: 2022-03-10
 tags: [c/cpp, atomic]
 ---
 

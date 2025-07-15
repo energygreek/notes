@@ -1,10 +1,9 @@
 ---
-title: segfault in dmesg
-date: 2021-04-12 10:27:48
+date: 2021-04-12
 tags: [debug]
 ---
 
-# 前言
+# segfault in dmesg
 
 偶尔看到自己或者客户的/var/log/message 日志出现segfault, 查询了一下相关信息
 ```

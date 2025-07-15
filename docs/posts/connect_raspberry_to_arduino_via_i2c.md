@@ -1,11 +1,11 @@
 ---
 title: connect raspberry and arduino via i2c
-date: 2020-11-12 18:48:01
-tags: [i2c,fun]
+date: 2020-11-12
+tags: [i2c,arduino]
 ---
 
 ## 准备
-先接线，然后启动arduino, 最后在树莓派中验证和读写。
+先接线，然后启动 arduino, 最后在树莓派中验证和读写。
 
 ### 连接两个设备的GND SDA SCL
 树莓派的SDA连arduino的SDA，SCL接SCL，这跟串口的接线不一样（RX接TX,TX接RX）。

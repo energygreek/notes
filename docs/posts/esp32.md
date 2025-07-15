@@ -1,7 +1,6 @@
 ---
-title: 玩转ESP32
-date: 2024-12-06 05:37:00
-tags: [fun,esp]
+date: 2024-12-06
+tags: [esp]
 ---
 
 # 玩转ESP32

@@ -1,9 +1,9 @@
 ---
-title: go 学习笔记
-date: 2021-05-21 09:24:51
-tags: [programing language, learn]
+date: 2021-05-21
+tags: [golang]
 ---
 
+# go 学习笔记
 ## go为什么要指针和什么时候必须用指针
 1. 传递waitgroup时
 2. 获取命令行参数

@@ -1,7 +1,6 @@
 ---
-title: pessimistic_lock_optimistic_lock
-date: 2020-07-28 18:10:31
-tags: [program,lock]
+date: 2020-07-28
+tags: [c,cpp,lock]
 ---
 
 # 乐观锁悲观锁

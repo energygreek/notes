@@ -1,6 +1,6 @@
 ---
 Gtitle: 模板编程(meta-programing)
-date: 2021-03-04 17:40:45
+date: 2021-03-04
 tags: [c/cpp,template programing]
 ---
 

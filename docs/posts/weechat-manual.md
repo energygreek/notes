@@ -1,6 +1,5 @@
 ---
-title: weechat-manual
-date: 2021-01-19 18:19:42
+date: 2021-01-19
 tags: [tool,irc]
 ---
 
@@ -49,7 +48,7 @@ nicks = "malloy,malloy1,malloy2"
 
 ### 加入聊天室
 
-聊天室都是以#开头，例如我使用的 #archlinuxcn
+聊天室都是以#开头，例如我使用的 '#archlinuxcn'
 ```
 /join #weechat
 ```

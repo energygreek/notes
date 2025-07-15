@@ -1,7 +1,7 @@
 ---
 title: c++ 信号和异常
-date: 2021-09-16 10:48:11
-tags: [c/cpp, signal, exception]
+date: 2021-09-16
+tags: [c, cpp, signal, exception]
 ---
 
 # c++的信号和异常

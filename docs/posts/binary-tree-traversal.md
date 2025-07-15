@@ -1,6 +1,6 @@
 ---
 title: binary tree traversal
-date: 2020-11-18 19:01:54
+date: 2020-11-18
 tags: [算法]
 ---
 

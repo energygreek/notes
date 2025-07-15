@@ -1,6 +1,5 @@
 ---
-title: ffmpeg notes
-date: 2024-01-29 10:10:38
+date: 2024-01-29
 tags: [ffmpeg]
 ---
 

@@ -1,8 +1,7 @@
 ---
 draft: true
-title: generate random number
 comments: true
-date: 2025-05-13 17:03:36
+date: 2025-05-13
 tags: [random, c]
 ---
 

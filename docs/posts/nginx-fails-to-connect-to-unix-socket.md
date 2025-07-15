@@ -1,6 +1,5 @@
 ---
-title: nginx fails to connect to unix socket
-date: 2020-07-25 17:23:26
+date: 2020-07-25
 tags: [flask,webserver]
 ---
 

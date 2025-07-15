@@ -1,6 +1,5 @@
 ---
-title: shell scripts learning
-date: 2021-03-31 14:41:09
+date: 2021-03-31
 tags: [shell]
 ---
 

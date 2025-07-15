@@ -1,6 +1,6 @@
 ---
 comments: true
-date: 2025-03-26 18:46:03
+date: 2025-03-26
 tags: [guitar]
 ---
 

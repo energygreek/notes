@@ -1,9 +1,9 @@
 ---
-title: ffmpeg-AVCodecContext
-date: 2023-08-02 10:29:05
+date: 2023-08-02
 tags: [ffmpeg,音视频]
 ---
 
+# libavcodec使用
 记录ffmpeg的学习系列，这是关于AVCodecContext的部分。
 
 ## sample_fmt

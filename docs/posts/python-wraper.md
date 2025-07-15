@@ -1,11 +1,10 @@
 ---
-title: python wraper
-date: 2020-08-11 19:15:52
+date: 2020-08-01
 tags: [python]
 ---
 
 
-# decoder 介绍
+# python decoder 介绍
 python decoder（装饰器）是python的高级用法，用来拓展函数或类的功能。不过也增加初学者
 阅读代码的难度
 

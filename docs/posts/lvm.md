@@ -1,6 +1,5 @@
 ---
-title: lvm 的使用
-date: 2020-10-22 16:01:53
+date: 2020-10-22
 tags: [linux,lvm]
 ---
 
@@ -16,17 +15,17 @@ LVM具有在线扩容和快照的重要功能
 ### 扩容步骤
 
 使用lvm中的pvmove 命令假如原来是使用pv 为/dev/sda1, 新的硬盘为/dev/sdb1  
-1. 新建pv: #pvcreate /dev/sdb1 
-2. 扩容vg：#vgextend vg1 /dev/sdb1 
+1. 新建pv: # pvcreate /dev/sdb1 
+2. 扩容vg：# vgextend vg1 /dev/sdb1 
 3. 如果要调整分区大小，使用lvresize -r -S 新大小。 不带-r的话需要重新mount才能生效， -S 是表示最终大小，-s +/- 是调整大小
 
 ### 换出步骤
 
 vgreduce 是将pv踢出vg, pvremove是删除pv标记
 
-1. 把sda1 上数据迁移到sdb1上： #pvmove  /dev/sda1  /dev/sdb1 
-2. vgreduce 从vg1踢出sda1盘 #vgreduce vg1 /dev/sda1  
-3. pvremove 删除磁盘分区的pv 标记 #pvremove /dev/sda1 
+1. 把sda1 上数据迁移到sdb1上： # pvmove  /dev/sda1  /dev/sdb1 
+2. vgreduce 从vg1踢出sda1盘 # vgreduce vg1 /dev/sda1  
+3. pvremove 删除磁盘分区的pv 标记 # pvremove /dev/sda1 
 
 ### 磁盘换出是否需要停业务
 

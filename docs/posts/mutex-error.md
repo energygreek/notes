@@ -1,13 +1,13 @@
 ---
-title: mutex error
 tags:
   - mutex
-  - c/cpp
-date: 2022-01-25 14:51:37
+  - c
+  - cpp
+date: 2022-01-25
 ---
 
 
-# 前言
+# mutex error
 记一次单元测试用例时失败，且出现奇怪的报错
 ```
 tpp.c:63: __pthread_tpp_change_priority: Assertion `new_prio == -1 ||(new_prio >= __sched_fifo_min_prio && new_prio <=__sched_fifo_max_prio)' failed

@@ -1,10 +1,9 @@
 ---
-title: create_loop_block
-date: 2020-08-05 13:59:43
+date: 2020-08-05
 tags: [filesystem, linux]
 ---
 
-# 问题， 如果在文件系统之上再创一个文件系统？
+# 在文件系统之上再创一个文件系统
 
 例如在ext3的文件系统上创建一个xfs的文件系统，可以通过回环设备loop， 我们经常通过 `mount -o loop ` 来 mount一个iso文件
 但mount 的选项总是ro的

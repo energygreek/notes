@@ -1,10 +1,9 @@
 ---
-title: iwd-ap
-date: 2023-11-08 16:00:00
-tags: [linux]
+date: 2023-11-08
+tags: [linux, iptables]
 ---
 
-## 使用iwd创建ap热点
+# 使用iwd创建ap热点
 windows中有很多软件能创建热点，现在Linux也可以创建热点了，下面记录方法
 
 ## 确认网卡支持AP
