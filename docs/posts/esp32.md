@@ -1,6 +1,6 @@
 ---
 date: 2024-12-06
-tags: [esp]
+tags: [esp,arduino]
 ---
 
 # 玩转ESP32
