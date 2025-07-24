@@ -42,7 +42,7 @@ awk '{for(i=1;i<=NF;i++)if($i=="TARGET"){print "TARGET located at row: " NR " co
 
 要打印id这列的第N行的值时，就循环调用getline N次。
 
-## 使用python库openpyxl 处理excel
+## 使用python库 openpyxl 处理excel
 
 体验了 openpyxl, 接口设计非常自然， 功能也非常全， 包括合并格子、字体、颜色。典型用法如下
 ```py
@@ -80,6 +80,133 @@ for col in sheet.iter_cols():
 workbook.save('test.xlsx')
 ```
 
+### 插入图片
+openpyxl还能插入图片，感觉非常棒
+
+```py
+from openpyxl import Workbook
+from openpyxl.drawing.image import Image
+
+wb = Workbook()
+ws = wb.active
+ws['A1'] = 'You should see three logos below'
+
+# create an image
+img = Image('logo.png')
+
+# add to worksheet and anchor next to cells
+ws.add_image(img, 'A1')
+wb.save('logo.xlsx')
+```
+https://openpyxl.readthedocs.io/en/stable/images.html
 
 
+## xlwings
+Currently, xlwings can only run as a remote interpreter on Linux, see: https://docs.xlwings.org/en/stable/remote_interpreter.html
+There are plans to add read/write capabilities, but for now you have to use one of OpenPyXL, XlsxWriter, or pyxlsb,
 
+## Libreoffice
+类比Excel使用vba来编程，Libreoffice sheet使用Basic，同时也支持 [python](https://help.libreoffice.org/latest/lo/text/sbasic/python/python_programming.html?&DbPAR=BASIC&System=UNIX)
+
+在chatgpt帮助下写了个url转图片的BASIC脚本
+```basic
+REM  *****  BASIC  *****
+Option Explicit
+
+Sub InsertAndResizeImages()                
+    Dim oSheet As Object
+    DIM oCell as Object 
+    Dim oGraphic As Object
+    Dim i As Long
+    Dim imageURL As String
+    Dim oSize As New com.sun.star.awt.Size
+	  Dim oColumns as Object
+	  Dim oRows As Object
+	
+	
+	oSheet = ThisComponent.CurrentController.getActiveSheet()
+    
+    oColumns = oSheet.getColumns()
+    oColumns.getByIndex(0).Width = 3200
+    
+    
+    i = 160
+    Do
+                   
+        oCell = oSheet.getCellByPosition(0, i)
+        oRows = oSheet.getRows()
+        oRows.getByIndex(i).Height = 3200
+        
+        imageURL = oCell.String
+        If imageURL = "" Then Exit Do
+        'Debug.Print oCell.String
+        'MsgBox imageURL
+        
+        On Error GoTo NextImage
+        oGraphic = ThisComponent.createInstance("com.sun.star.drawing.GraphicObjectShape") 
+        oGraphic.GraphicURL = imageURL
+        oGraphic.Position = oCell.Position
+
+		oSheet.DrawPage.add(oGraphic)
+		
+		oSize.Width = 3200
+        oSize.Height = 3200
+        oGraphic.Size = oSize
+        
+        Wait 500  ' Pauses for 0.5 seconds
+
+	Exit Do
+NextImage:
+        i = i + 1
+    Loop
+        
+End Sub
+```
+
+### libreoffice 也支持 python
+libreoffice 的UNO API是独立于编程语言的，BASIC可以直接用 `ThisComponent`，而python需要通过'XSCRIPTCONTEXT'来用，获取sheet的BOOK对象方法是`doc = XSCRIPTCONTEXT.getDocument()`
+
+有个Basic和Python的[对比写法](https://help.libreoffice.org/latest/lo/text/sbasic/guide/read_write_values.html?DbPAR=BASIC#bm_id41582391760114)，总结是很相似。用python重写BASIC代码就是
+
+```python
+def insert_and_resize_images():
+    from com.sun.star.awt import Size
+    import time
+
+    doc = XSCRIPTCONTEXT.getDocument()
+    sheet = doc.CurrentController.ActiveSheet
+
+    columns = sheet.getColumns()
+    columns.getByIndex(0).Width = 3200
+
+    i = 160
+    while True:
+        cell = sheet.getCellByPosition(0, i)
+        rows = sheet.getRows()
+        rows.getByIndex(i).Height = 3200
+
+        image_url = cell.String
+        if image_url == "":
+            break
+
+        try:
+            graphic = doc.createInstance("com.sun.star.drawing.GraphicObjectShape")
+            graphic.GraphicURL = image_url
+            graphic.Position = cell.Position
+
+            sheet.DrawPage.add(graphic)
+
+            size = Size()
+            size.Width = 3200
+            size.Height = 3200
+            graphic.Size = size
+
+            time.sleep(0.5)  # 0.5 seconds pause
+
+        except:
+            pass  # Continue on error
+
+        i += 1
+```
+
+无论是excel的xlwings还是libreoffice sheet的pyUNO, 都不能独立使用，都要安装套件。 
