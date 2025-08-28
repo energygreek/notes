@@ -120,5 +120,52 @@ int main()
 
 ```
 
-## 使用哈希区分两个字符串是否一致
-哈希可以利用硬件加速，非常高效
+## 使用哈希查找和strstr速度比较
+hash在查找字符串时，每次偏移1个字节，并计算hash, 为了不重复计算重叠部分，有个算法'Karp-Rabin with Rolling Hash'。 但是速度都不如glibc的 strstr， 因为这里的hash函数没有用到硬件加速，但是strstr用了。
+
+```c
+#define BASE 256         // Alphabet size (ASCII)
+#define MOD 101          // A prime number to avoid overflow
+
+// Rolling hash version of strstr()
+const char* rabin_karp_strstr(const char* haystack, const char* needle) {
+    int n = strlen(haystack);
+    int m = strlen(needle);
+
+    if (m == 0) return haystack;
+    if (m > n) return NULL;
+
+    int i;
+    int hash_needle = 0;  // Hash for needle
+    int hash_window = 0;  // Hash for current window in haystack
+    int h = 1;
+
+    // The value of h is BASE^(m-1) % MOD
+    for (i = 0; i < m - 1; i++)
+        h = (h * BASE) % MOD;
+
+    // Calculate the hash value of needle and first window
+    for (i = 0; i < m; i++) {
+        hash_needle  = (BASE * hash_needle + needle[i]) % MOD;
+        hash_window = (BASE * hash_window + haystack[i]) % MOD;
+    }
+
+    // Slide the pattern over text
+    for (i = 0; i <= n - m; i++) {
+        if (hash_needle == hash_window) {
+            // Verify characters to avoid false positive
+            if (strncmp(&haystack[i], needle, m) == 0)
+                return &haystack[i];
+        }
+
+        // Calculate hash for next window
+        if (i < n - m) {
+            hash_window = (BASE * (hash_window - haystack[i] * h) + haystack[i + m]) % MOD;
+            if (hash_window < 0)
+                hash_window += MOD;  // Ensure non-negative
+        }
+    }
+
+    return NULL;
+}
+```
