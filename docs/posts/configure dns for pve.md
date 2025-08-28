@@ -124,7 +124,8 @@ PING gitea.pve (10.8.10.130) 56(84) bytes of data.
 
 pve创建容器时，默认拷贝宿主机的dns配置即/etc/resolve.conf，先将其修改成如下，search 的作用是简化域名 gitea.pve 成 gitea 
 ```
-nameserver 127.0.0.1
+nameserver 192.168.10.1
+nameserver 1.0.0.1
 search pve local
 ``` 
 
