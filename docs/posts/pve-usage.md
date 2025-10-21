@@ -1,10 +1,9 @@
 ---
-title: pve-usage
 date: 2023-08-12 17:39:12
-tags: [linux]
+tags: [pve]
 ---
 
-这里记录pve的使用
+# pve入门
 
 ## lxc 配置
 pve使用lxc来运行容器而不是docker。 docker对应的“镜像”概念在pve里叫`模板(template)`，默认的pve容器模板是从官网下载，非常慢，可以替换成清华源。另外在模板列表里面的模板都是比较新的，老版本可以上[清华源](https://mirrors.tuna.tsinghua.edu.cn/proxmox/images/system/)上找，例如centos7，然后通过url来上传，怎样都非常方便。
