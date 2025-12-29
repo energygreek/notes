@@ -90,11 +90,11 @@ rndc reload
 * 在pve里dig @192.168.10.1 查询容器的ip
 
 ## 外部配合修改dns服务器
-上面dig命令指定了dns服务器的ip, 为了让系统自动选择pve上的dns服务器来解析 *.pve 域名，要修改笔记本配置，命令就两个
-
+上面dig命令指定了dns服务器的ip, 为了让系统自动选择pve上的dns服务器来解析 *.pve 域名，要修改笔记本配置，使用的NetworkManager
 ```sh
-resolvectl dns wlp5s0 10.8.10.7 # pve 的外部ip
-resolvectl domain wlp5s0 '~pve'
+nmcli connection modify WIFI_CONNECTION ipv4.dns-search "~pve" 
+nmcli connection modify MI-MINI_5G_D300 ipv4.dns 10.8.10.77
+nmcli connection modify MI-MINI_5G_D300 ipv4.dns-priority -1 
 ```
 
 而我用了有以太网和wifi两个网络，我只修改了wlp5s0。通过前后 resolvectl status 对比，区别如下
