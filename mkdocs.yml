@@ -1,39 +1,33 @@
 site_name: Some Notes
 site_url: https://energygreek.github.io/notes
-theme:
-  name: material
-  language: zh
-  logo: assets/bird.png
-  favicon: assets/logo.png
-  custom_dir: overrides
-  features:
-    - navigation.tabs
-    - navigation.indexes
-    - navigation.tabs.sticky
-    - navigation.instant
-    - navigation.instant.progress
-    - navigation.footer
-    - toc.follow
-    - content.code.copy
-    - content.action.view
-  palette:
-    # Light mode
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
-      primary: green
-      accent: indigo
-      toggle:
-        icon: material/toggle-switch-off-outline
-        name: Switch to dark mode
 
-    # Dark mode
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
-      primary: gray
-      accent: blue
-      toggle:
-        icon: material/toggle-switch
-        name: Switch to light mode
+nav:
+  - Home: 
+    - blog/index.md
+  - Tag: tags.md
+  - About: 
+    - index.md
+
+plugins:
+  - search
+  - roamlinks
+  - tags
+  - blog:
+      post_url_format: "{slug}"
+      categories_url_format: "{slug}"
+      archive: true
+      archive_date_format: yyyy
+      draft: false
+      blog_toc: true
+  - rss:
+      enabled: true
+      match_path:  blog/posts/.*
+      date_from_meta:
+        as_creation: date
+
+extra_javascript:
+  - js/tex-mml-chtml.js
+  - js/mermaid.min.js 
 
 # Extensions
 markdown_extensions:
@@ -60,22 +54,37 @@ markdown_extensions:
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
 
-plugins:
-  - blog:
-      blog_dir: .
-      draft: false
-      draft_on_serve: true
-      archive: true
-      archive_name: 归档
-      blog_toc: true
-  - search
-  - roamlinks
-  - tags
-  - rss:
-      match_path: docs/posts/.*
-      date_from_meta:
-        as_creation: date
+theme:
+  name: material
+  language: zh
+  logo: assets/bird.png
+  favicon: assets/logo.png
+  custom_dir: overrides
+  features:
+    - navigation.tabs
+    - navigation.indexes
+    - navigation.tabs.sticky
+    # - navigation.instant
+    # - navigation.instant.progress
+    - navigation.footer
+    - toc.follow
+    - content.code.copy
+    - content.action.view
+  palette:
+    # Light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: green
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
 
-extra_javascript:
-  - js/tex-mml-chtml.js
-  - js/mermaid.min.js 
+    # Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: gray
+      accent: blue
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
