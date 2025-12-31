@@ -1,0 +1,1452 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://energygreek.github.io/notes/blog/notes/">
+      
+      
+        <link rel="prev" href="../%E4%BD%BF%E7%94%A8iwd%E5%88%9B%E5%BB%BAap%E7%83%AD%E7%82%B9/">
+      
+      
+        <link rel="next" href="../streaming-h264-with-rtp/">
+      
+      
+        
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="RSS 订阅" href="../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="已更新内容的 RSS 订阅" href="../../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Notes - Some Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="Some Notes" class="md-header__button md-logo" aria-label="Some Notes" data-md-component="logo">
+      
+  <img src="../../assets/bird.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Some Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Notes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="gray" data-md-color-accent="blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../tags/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tag
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Some Notes" class="md-nav__button md-logo" aria-label="Some Notes" data-md-component="logo">
+      
+  <img src="../../assets/bird.png" alt="logo">
+
+    </a>
+    Some Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Blog
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_2" id="__nav_1_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    归档
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    归档
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2025
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2024/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2024
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2023/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2023
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2022/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2022
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2021/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2021
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2020/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2020
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2019/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2019
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tag
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        笔记本的笔记整理和誊抄
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ffmpeg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FFmpeg
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FFmpeg">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ffmpeg_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ffmpeg
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ffmpeg">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        filter 滤镜
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="filter 滤镜">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        加速
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="加速">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        加速视频
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        加速音频
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        同时加速音频和视频
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        视频裁剪
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="视频裁剪">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#frame_accurate_seek-noaccurate_seek" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        在裁剪时有两个选项 frame_accurate_seek 和 -noaccurate_seek 区别, 后者会使用附近的关键帧。
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-ss-t-ss-to-ss-10-t-2010s30s-ss-10-to-20-10s20s" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        -ss -t 与 -ss -to的区别，-ss 10 -t 20表示截取10s~30s的视频，而 -ss 10 -to 20 表示截取10s~20s的视频。
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        编译问题
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ffplay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ffplay 播放媒体文件
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ffplay 播放媒体文件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ptsdts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        时间戳 PTS/DTS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ffprobe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ffprobe 查看媒体文件信息
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        直播
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rtp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        rtp流
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="rtp流">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rtpsdp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        rtp的sdp
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clockrate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        clockrate 时钟频率
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ffmpegrtp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ffmpeg发送接收rtp
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常见分辨率
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#h264" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        h264
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="h264">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        视频格式P/I
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        音视频同步
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ffmpegh264bpsbit-per-second" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ffmpeg播放h264时，限制比特率（bps,bit per second)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        通过比特率来计算文件大小：
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        图片
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="图片">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#outline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        高频洗劫低频轮廓 outline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avframe-avpacket" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Avframe 存储一帧解码后的像素数据，Avpacket 存储一帧压缩的数据。
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pcm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        音频pcm
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        数学
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="数学">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#difference-equation-differential-equation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        差分和微分 difference equation / differential equation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        信号和系统
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    回到主页
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    元数据
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2024-01-29 00:00:00+00:00" class="md-ellipsis">2024年1月29日</time>
+                      </div>
+                    </li>
+                    
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              需要 3 分钟阅读时间
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+            
+          </nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+  
+
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:ffmpeg" class="md-tag">ffmpeg</a>
+      
+    
+  </nav>
+
+
+
+  <h1>Notes</h1>
+
+<h2 id="_1">笔记本的笔记整理和誊抄<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>主要是关于ffmpeg的知识总结</p>
+<h2 id="ffmpeg">FFmpeg<a class="headerlink" href="#ffmpeg" title="Permanent link">&para;</a></h2>
+<p>读法"F-F-M-派格", 由三个可执行文件组成"ffmpeg/ffplay/ffprobe"。</p>
+<h3 id="ffmpeg_1">ffmpeg<a class="headerlink" href="#ffmpeg_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>支持的容器 <code>ffmpeg -muxers</code> 分为Demuxing和Muxing（D/E）封装和解封装，支持Muxing肯定支持Demuxing。</li>
+<li>支持的编码 <code>ffmpeg -codecs</code> 分为解码和编码(decoder/encoder)，支持编码一般能支持解码。</li>
+<li>容器帮助信息 <code>ffmpeg -h muxer=mp4</code> <code>ffmpeg -h demuxer=mp4</code> 加上<code>-h full</code>查看更多信息</li>
+<li>编码帮助信息 <code>ffmpeg -h encoder=h264</code> <code>ffmpeg -h decoder=h264</code> 加上<code>-h full</code>查看更多信息</li>
+<li>支持的滤镜 <code>ffmpeg -filters</code> 这里的滤镜不是PS等图片编辑软件里面的滤镜，而应该称做特效，支持视频和音频还有字幕。</li>
+</ul>
+<p>当转码或转容器格式时，-map参数用来手动选择流，参数格式 -map n:m:x 其中n表示选择第n个输入，m代表第n个输入中的第m个流，而x表示第n个输入中的第m个流的第x个通道。当没有-map参数时，ffmpeg会根据容器类型自动选择合适的流。-map还能用来选择filtergraph中的滤镜输出。</p>
+<h4 id="filter">filter 滤镜<a class="headerlink" href="#filter" title="Permanent link">&para;</a></h4>
+<p>分为 filtergraph filterchain 和 filter
+* filtergraph 是包含很多个filter的有向图，每两个滤镜之间都可以有多个连接。
+* filter 分为source filter, sink filter, filter，其中source filter没有输入端，sink filter没有输出端。 </p>
+<p>多个filter用","来连接，形成filterchain，而多个chain用";"来连接，形成fitergraph。</p>
+<p>简单滤镜格式参数格式 -f:v 或 -f:a [输入流或标记名]滤镜参数[临时标记名];(重复n个)。复杂滤镜格式 -filter_complex
+overlay滤镜用来设置显示层次，例如[overlay]filter 将输入显示在另一个上面。</p>
+<h5 id="_2">加速<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h5>
+<p>使用滤镜来加速播放</p>
+<h6 id="_3">加速视频<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h6>
+<p>使用setpts来加速视频 -f:v setpts=0.5*PTS, 注意：1调整范围[0.25,4]，越小越快，从加速4倍到减速4倍。2若只是调整视频则将音频关掉。3对视频加速时，如果不想丢帧，则使用-r参数调整输出的FPS。</p>
+<h6 id="_4">加速音频<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h6>
+<p>最简单的方法是调整采样率，但这样会改变音色，一般使用对原音进行重采样。 -f:a atempo:2.0。范围 [0.5,2.0]，若要4倍加速，使用滤镜组合 -f:a atempo=2.0,atempo=2</p>
+<h6 id="_5">同时加速音频和视频<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h6>
+<p>可以用 -filter_complex "[0:v]setpts=0.5*PTS[v];[0:a]atempo=2.0[a]" -map [v] -map [a] 。也可以组合使用上面的两个滤镜。</p>
+<h5 id="_6">视频裁剪<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h5>
+<p>-ss 选项seek，从开头跳过一段片长，参数两种形式 00:00:00或者秒数。-ss设置在输入对象和输出对象上有不同效果。
+* -ss 指定在输入时，不仅可以用于复制，也可以用于转码。并且都是基于关键帧来寻找位置，默认启用选项“frame_accurate"
+* -ss 指定在输出时，源文件依旧会每帧都要解码并丢弃，知道跳过指定的时间所以要等待。但是-SS用在输出时，最大的优点是当使用滤镜时，其timestamp不会重置0,这个在录制字幕时有用，不需要修改字幕的时间戳。</p>
+<h6 id="frame_accurate_seek-noaccurate_seek">在裁剪时有两个选项 frame_accurate_seek 和 -noaccurate_seek 区别, 后者会使用附近的关键帧。<a class="headerlink" href="#frame_accurate_seek-noaccurate_seek" title="Permanent link">&para;</a></h6>
+<h6 id="-ss-t-ss-to-ss-10-t-2010s30s-ss-10-to-20-10s20s">-ss -t 与 -ss -to的区别，-ss 10 -t 20表示截取10s~30s的视频，而 -ss 10 -to 20 表示截取10s~20s的视频。<a class="headerlink" href="#-ss-t-ss-to-ss-10-t-2010s30s-ss-10-to-20-10s20s" title="Permanent link">&para;</a></h6>
+<p>截取视频不准确问题：
+* 当使用-ss和-c:copy时，由于ffmpeg强制使用I帧，所以可能调整起始时间到负值，即提前于ss设置的时间
+* 例如 -ss 157 但直到159时才有I帧，它会有2秒的时间只有声音没有画面。 </p>
+<h4 id="_7">编译问题<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
+<ul>
+<li>编译ffmpeg支持h265, 因为h265库是用c++写的，所以编译ffmpeg时要加上额外库<code>-lstdc++</code></li>
+<li>如果pc文件不在标准路径，需要修改环境变量<code>export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:"pc文件路径"</code></li>
+<li>如果链接到了动态库，可以使用enable-rpath设置运行时找库路径</li>
+</ul>
+<h3 id="ffplay">ffplay 播放媒体文件<a class="headerlink" href="#ffplay" title="Permanent link">&para;</a></h3>
+<ul>
+<li>在视频中插入字幕 <code>ffplay -f:v "subtitle=input.srt" input.mp4</code></li>
+<li>音频可视化 <code>ffplay -showmode 1 input.mp3</code> 默认是0, 用傅立叶变换显示声音的频率频谱，处理时长差不多是1s。</li>
+<li>视频显示运动方向 <code>ffplay -flags2 +export_mvs  -vf codecview=mv=pf -i input.mp4</code></li>
+</ul>
+<p>ffplay 指定视频显示大小，当播放原始视频时如input.h264，用-video_size来指定视频大小，而非设置播放器显示大小。如果要控制播放器显示大小用 scale/resize滤镜。</p>
+<p>-s 选项，当用在输入选项时，可以替代video_size。当用在输出选项时，可以替代scale滤镜，但只能于filtergraph最后的filter，若想作用在filtergraph其它位置，则必须显示使用scale。</p>
+<h4 id="ptsdts">时间戳 PTS/DTS<a class="headerlink" href="#ptsdts" title="Permanent link">&para;</a></h4>
+<p>PTS是显示时间戳, presentation timestamp 指表示渲染的时间点，而DTS是Decode timestamp，解码时间戳，表示解码时间点。因为视频的B帧要等待下一个I帧，所以B帧会先保存在缓冲区。
+在ffplay和ffmpeg 播放/转码视频时，控制台显示了tbn，tbc，tbr， 这些都是timebase，也叫时间精度。每次处理后当前的时间戳会增加一个timebase。
+* tbn: timebase of AVstream, 表示从容器中读取的timestamp的增加一次timebase。 
+* tbc: timebase of codec, 表示某个流的对应的编码采用的时间基，每次解码都增加一次timebase。 50tbc时，1S有50帧。
+* tbr: 一帧的timebase，是预估值。 </p>
+<h3 id="ffprobe">ffprobe 查看媒体文件信息<a class="headerlink" href="#ffprobe" title="Permanent link">&para;</a></h3>
+<p>视频分析软件除了ffprobe还有 mp4info。</p>
+<h3 id="_8">直播<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>视频直播技术里， HLS和DASH等分片技术比较流行。</p>
+<h3 id="rtp">rtp流<a class="headerlink" href="#rtp" title="Permanent link">&para;</a></h3>
+<p>rtp是通信语音行业的常用协议，可以发送视频和语音之一，不可以同时发送视频和语音，语音也只支持单通道（对于PCM类型的语言而言，而rtp支持OPUS发送多通道）。rtp有多流同步机制，接收终端可以将多个rtp流合并，支持类似webrtc的会议模式，rtp也能支持5G的视频通话。</p>
+<h4 id="rtpsdp">rtp的sdp<a class="headerlink" href="#rtpsdp" title="Permanent link">&para;</a></h4>
+<p>在建立rtp连接之前，两个终端要协商一个两边都支持的视频和语音编码，否则无法建立。 sdp则描述了ip/端口/媒体编码相关的信息，这些不能通过rtp协议来传送（in-band）。</p>
+<h4 id="clockrate">clockrate 时钟频率<a class="headerlink" href="#clockrate" title="Permanent link">&para;</a></h4>
+<p>sdp中的a属性有clok</p>
+<h3 id="ffmpegrtp">ffmpeg发送接收rtp<a class="headerlink" href="#ffmpegrtp" title="Permanent link">&para;</a></h3>
+<p>rtp对于ffmpeg而言是一种容器，与其它的mp4/avi类似，代码实现也同样在libavformat里。只是不同在于前着是写文件，rtp容器则是发送网络包。例如读取mp4文件并发送音频的命令<code>ffmpeg -i input.mp4 -vn -ac 1 -f rtp rtp://ip:port</code>，<code>-vn</code>表示不发送视频，<code>-ac 1</code>表示合并音频多通道为单通道。</p>
+<h2 id="_9">常见分辨率<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>640x480（480p）分辨率比4:3
+1280x720（720p HD）
+1920x1080(1080p FHD）
+3840x2160(4k UHD)</p>
+<h2 id="h264">h264<a class="headerlink" href="#h264" title="Permanent link">&para;</a></h2>
+<p>I/P/B 三种类型的帧:
+* I帧, Index frame, 是完整的一幅图片，不依赖其它帧就能解码显示。
+* P帧, Delta frame, 是向前帧，依赖I帧来解码。只有运动的对象，而没有背景信息。
+* B帧， Bidirectional pridict picture, B帧则依赖P帧和下一个I帧来解码<code>I-&gt;P-&gt;B-&gt;I</code>，最节省字节。
+所以视频种的B帧越多，视频文件的体积越小，而解码的复杂度越高。</p>
+<p>ffmpeg转码h264的命令，<code>ffmpeg -i input.mp4 -av sample-rate -crf {17~23} -b:v video-bitrate -r frame-rate -profile {baseline|main|high}</code>
+* -av 指定sample rate采样率
+* -crf 指定视频质量
+* -b:v video bitrate 视频的比特率
+* -b:a audio bitrate 音频的比特率
+* -r frame rate 指定帧率
+* -profile 指定视频的档次
+* -level 指定视频等级</p>
+<p>使用baseline prfile时，不会包含B帧，当使用实时流媒体直播时，采用baseline编码相对main和high相对可靠，但加入B帧可以减小比特率。</p>
+<h3 id="pi">视频格式P/I<a class="headerlink" href="#pi" title="Permanent link">&para;</a></h3>
+<p>p代表progressive代表逐行扫描，I代表interlaced 隔行扫描，但是一旦视频损坏时，视频几乎无法观看。</p>
+<h3 id="_10">音视频同步<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>音频和视频都是独立的线程处理，主要通过各自PTS来同步，但实际上音视频大部分情况是不同步的，偶尔是同步的。当音频和视频时间误差超过阈值时，就会去重同步。重同步主要是调整视频，因为人眼对视频的敏感度不如对音频的敏感度。</p>
+<h3 id="ffmpegh264bpsbit-per-second">ffmpeg播放h264时，限制比特率（bps,bit per second)<a class="headerlink" href="#ffmpegh264bpsbit-per-second" title="Permanent link">&para;</a></h3>
+<p>视频的比特率分为两个码率，CBR恒定比特率，VBR波动比特率。互联网视频多为VBR。如果想用CBR，-b:v 设置编码比特率，但这里设定的平均值，不能很好控制最大和最小码率。要控制最大最小比特率，需要组合使用 -b:v，maxrate，minrate。另外还要设置buff打小<code>-bufsize</code>。例如:
+<div class="highlight"><pre><span></span><code>ffmpeg -i input.avi -bo 15M -minrate 0.5M -maxrate 0.5M -bufsize 1M out.mkv
+</code></pre></div>
+bufsize 说明，如果不使用bufsize，其变化范围将比我们的预期大很多。当设置bufsize很大时浮动范围比较大，设置太小时，会导致视频质量降低。最合适的大小时-b:v的大小一半，然后逐渐增加bufsize，直到bitrate变化比较明显时，这是质量最高而且比较恒定的大小。</p>
+<h3 id="_11">通过比特率来计算文件大小：<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>视频大小 = 比特率 * time_in_second / 8
+未压缩音频大小 = 采样率 * 采样深度 * channel数 * time_in_second / 8
+压缩音频文件大小 = 比特率 * time_in_second /8</p>
+<h3 id="_12">图片<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p>alpha 通道是RGB通道外的一个通道，用来表示像素的透明度，是另一个维度。
+* 当使用16bit的位图时，对于每个像素5bit表示红，5bite表示绿，5表示蓝，最后一个bit表示alpha。所以这时只有1/0选择，所以只有透明和不透明的。
+* 当使用32bit的位图时，8bit来表示alpha通道，就有0～255个值表示不同程度的透明。而alpha的值不直接表示透明度而是通过与RGB三个通道的值相乘，这样得道了显示的值。</p>
+<h4 id="outline">高频洗劫低频轮廓 outline<a class="headerlink" href="#outline" title="Permanent link">&para;</a></h4>
+<p>在傅里叶边换中，用不同频率相位的正弦波，可以模拟出各种类型的信号。其中高频信号越高，还原效果越好。</p>
+<h4 id="avframe-avpacket">Avframe 存储一帧解码后的像素数据，Avpacket 存储一帧压缩的数据。<a class="headerlink" href="#avframe-avpacket" title="Permanent link">&para;</a></h4>
+<h3 id="pcm">音频pcm<a class="headerlink" href="#pcm" title="Permanent link">&para;</a></h3>
+<ul>
+<li>采样：是将音频模拟信号定时取值，得到一个离散序列。为了能将离散序列恢复成为模拟信号供播放器播放，采样频率要是声音频率的至少两倍。所以若要采样1k频率的声音，需要用2k采样率。</li>
+<li>采样深度：单个采样的储存长度。</li>
+<li>音频帧：单位时间里的多个采样。</li>
+</ul>
+<h2 id="_13">数学<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<h3 id="difference-equation-differential-equation">差分和微分 difference equation / differential equation<a class="headerlink" href="#difference-equation-differential-equation" title="Permanent link">&para;</a></h3>
+<p>差分是离散，各个连续项之间不存在其它元素。例如1,2,3,4,5 不存在1.1,1.2,1.3。而微分是连续的，1和2之间可以有1.1,1.11,1.12,1.2等。总结是差分是微分的离散化。</p>
+<h3 id="_14">信号和系统<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<p>离散傅里叶边换 DFT discret fourier transform，傅里叶变换出来的结果是复数=X+YI，I^2=-1。 谐波是什么，为何傅里叶变换要复数，因为表示波的方法要用到频率和相位还有振幅。 
+复数模等于振幅 <code>e^(jwb) = cos(wb) + isin(wb)</code></p>
+<p>波的表示方法： y=Asin(B(x+C)), A振幅，B频率，C相位。</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+      
+    </article>
+  </div>
+
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+        
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../%E4%BD%BF%E7%94%A8iwd%E5%88%9B%E5%BB%BAap%E7%83%AD%E7%82%B9/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 使用iwd创建ap热点">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                使用iwd创建ap热点
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../streaming-h264-with-rtp/" class="md-footer__link md-footer__link--next" aria-label="下一页: streaming h264 with rtp">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                streaming h264 with rtp
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../js/tex-mml-chtml.js"></script>
+      
+        <script src="../../js/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

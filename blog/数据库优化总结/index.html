@@ -1,0 +1,1444 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://energygreek.github.io/notes/blog/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/">
+      
+      
+        <link rel="prev" href="../%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%AD%E5%B0%8F%E6%95%B0%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/">
+      
+      
+        <link rel="next" href="../%E5%9C%A8linux%E4%B8%8B%E4%BD%BF%E7%94%A8sdcc%E8%BF%9B%E8%A1%8C%E5%8D%95%E7%89%87%E6%9C%BA%E7%BC%96%E8%AF%91/">
+      
+      
+        
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="RSS 订阅" href="../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="已更新内容的 RSS 订阅" href="../../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>数据库优化总结 - Some Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="Some Notes" class="md-header__button md-logo" aria-label="Some Notes" data-md-component="logo">
+      
+  <img src="../../assets/bird.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Some Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              数据库优化总结
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="gray" data-md-color-accent="blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../tags/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tag
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Some Notes" class="md-nav__button md-logo" aria-label="Some Notes" data-md-component="logo">
+      
+  <img src="../../assets/bird.png" alt="logo">
+
+    </a>
+    Some Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Blog
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_2" id="__nav_1_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    归档
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    归档
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2025
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2024/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2024
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2023/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2023
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2022/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2022
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2021/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2021
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2020/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2020
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2019/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2019
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tag
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#normal-form" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        数据库设计范式 Normal Form
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="数据库设计范式 Normal Form">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1nf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1NF：原子化，单元格里的值不能被分割
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2nf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2NF：属性不允许部分依赖（复合）主键
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3nf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3NF： 依赖不能传递
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3NF： 依赖不能传递">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        不满足3范式的问题
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35nf-bcnf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5NF： BCNF
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        反范式
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#having" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HAVING 和查询语句优先级
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VIEW和数据冗余
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        事物，存储过程和触发器
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        参考
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    回到主页
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    元数据
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2022-03-21 00:00:00+00:00" class="md-ellipsis">2022年3月21日</time>
+                      </div>
+                    </li>
+                    
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              需要 2 分钟阅读时间
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+            
+          </nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+  
+
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:sql" class="md-tag">sql</a>
+      
+    
+  </nav>
+
+
+
+<h1 id="_1">数据库优化总结<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>这里总结了从数据库设计和sql结构两个方面的优化</p>
+<h2 id="normal-form">数据库设计范式 Normal Form<a class="headerlink" href="#normal-form" title="Permanent link">&para;</a></h2>
+<p>范式是在数据库的设计时总结出来的一套规范，通常满足3范式就足够了。但由于3范式也存在问题，所以有了3.5范式</p>
+<p>范式从1到3是越来越严格，所以满足1NF不一定满足2NF，但满足2NF就肯定满足1NF    </p>
+<p>满足所有范式的表没有冗余数据，但也有问题，比如效率不高。这就有了反范式做法，即允许数据冗余，用空间换时间</p>
+<h3 id="1nf">1NF：原子化，单元格里的值不能被分割<a class="headerlink" href="#1nf" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Employee Id</th>
+<th>Employee Name</th>
+<th>Phone Number</th>
+<th>Salary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1EDU001</td>
+<td>Alex</td>
+<td>+91 85532065 <br> +91 85532066</td>
+<td>60,131</td>
+</tr>
+<tr>
+<td>1EDU002</td>
+<td>Alex</td>
+<td>+91 85532066</td>
+<td>75,331</td>
+</tr>
+<tr>
+<td>1EDU003</td>
+<td>Alex</td>
+<td>+91 85532068</td>
+<td>63,231</td>
+</tr>
+<tr>
+<td>1EDU004</td>
+<td>Alex</td>
+<td>+91 85532069</td>
+<td>70,231</td>
+</tr>
+<tr>
+<td>1EDU005</td>
+<td>Alex</td>
+<td>+91 85543065 <br> +91 85543075</td>
+<td>60,531</td>
+</tr>
+</tbody>
+</table>
+<p>可见，有条目的电话格里有两个号码，是可以分割的， 所以不满足1NF。应改为</p>
+<table>
+<thead>
+<tr>
+<th>Employee Id</th>
+<th>Employee Name</th>
+<th>Phone Number</th>
+<th>Salary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1EDU001</td>
+<td>Alex</td>
+<td>+91 85532065</td>
+<td>60,131</td>
+</tr>
+<tr>
+<td>1EDU001</td>
+<td>Alex</td>
+<td>+91 85532066</td>
+<td>60,131</td>
+</tr>
+<tr>
+<td>1EDU002</td>
+<td>Alex</td>
+<td>+91 85532066</td>
+<td>75,331</td>
+</tr>
+<tr>
+<td>1EDU003</td>
+<td>Alex</td>
+<td>+91 85532068</td>
+<td>63,231</td>
+</tr>
+<tr>
+<td>1EDU004</td>
+<td>Alex</td>
+<td>+91 85532069</td>
+<td>70,231</td>
+</tr>
+<tr>
+<td>1EDU005</td>
+<td>Alex</td>
+<td>+91 85543065</td>
+<td>60,531</td>
+</tr>
+<tr>
+<td>1EDU005</td>
+<td>Alex</td>
+<td>+91 85543075</td>
+<td>60,531</td>
+</tr>
+</tbody>
+</table>
+<p>当所有单元格都无法分割了，就满足了第一范式</p>
+<h3 id="2nf">2NF：属性不允许部分依赖（复合）主键<a class="headerlink" href="#2nf" title="Permanent link">&para;</a></h3>
+<p>满足2NF前提要满足1NF, 范式2要求非主属性必须依赖完整复合主键或者主键。  </p>
+<p>下表<code>Employee Id</code>和<code>Department Id</code>组成复合主键<br />
+|Employee Id|Department Id |Office Location |
+|---|---|---|
+|1EDUO01 | ED-T1 | Pune |
+|1EDUO02 | ED-S2 |Bengaluru |
+|1EDUO03 | ED-M1 | Delhi |
+|1EDUO04 | ED-T3 | Mumbai |
+|1EDUO05 | ED-T1 | Pune |</p>
+<p>但<code>Office Location</code>只依赖主键的<code>Employee Id</code>部分。或者说只需<code>Department Id</code>就能保证<code>Office Location</code>唯一， 所以是部分依赖。这样不满足2NF了，应改成两个表</p>
+<table>
+<thead>
+<tr>
+<th>Employee Id</th>
+<th>Department Id</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1EDUO01</td>
+<td>ED-T1</td>
+</tr>
+<tr>
+<td>1EDUO02</td>
+<td>ED-S2</td>
+</tr>
+<tr>
+<td>1EDUO03</td>
+<td>ED-M1</td>
+</tr>
+<tr>
+<td>1EDUO04</td>
+<td>ED-T3</td>
+</tr>
+<tr>
+<td>1EDUO05</td>
+<td>ED-T1</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Department Id</th>
+<th>Office Location</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ED-T1</td>
+<td>Pune</td>
+</tr>
+<tr>
+<td>ED-S2</td>
+<td>Bengaluru</td>
+</tr>
+<tr>
+<td>ED-M1</td>
+<td>Delhi</td>
+</tr>
+<tr>
+<td>ED-T3</td>
+<td>Mumbai</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3nf">3NF： 依赖不能传递<a class="headerlink" href="#3nf" title="Permanent link">&para;</a></h3>
+<p>满足3NF前提要满足2NF, 还有非主属性必须依赖主键/复合主键，不能依赖其他非主属性</p>
+<table>
+<thead>
+<tr>
+<th>Student Id</th>
+<th>Student name</th>
+<th>Subject Id</th>
+<th>Subject</th>
+<th>Adress</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1DT1SENGO1</td>
+<td>Alex</td>
+<td>15CS11</td>
+<td>SQL</td>
+<td>Goa</td>
+</tr>
+<tr>
+<td>1DT1SENGO2</td>
+<td>Barry</td>
+<td>15CS13</td>
+<td>JAVA</td>
+<td>Bengaluru</td>
+</tr>
+<tr>
+<td>1DT15ENGO3</td>
+<td>Clair</td>
+<td>15CS12</td>
+<td>C++</td>
+<td>Delhi</td>
+</tr>
+<tr>
+<td>1DT15ENG04</td>
+<td>DavId</td>
+<td>15CS13</td>
+<td>JAVA</td>
+<td>Kochi</td>
+</tr>
+</tbody>
+</table>
+<p>上表的<code>Subject</code>依赖非主属性<code>Subject Id</code>，而不是依赖<code>Student Id</code>， 这就不满足3NF了。应改成</p>
+<table>
+<thead>
+<tr>
+<th>Student Id</th>
+<th>Student name</th>
+<th>Subject Id</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1DT1SENGO1</td>
+<td>Alex</td>
+<td>15CS11</td>
+</tr>
+<tr>
+<td>1DT1SENGO2</td>
+<td>Barry</td>
+<td>15CS13</td>
+</tr>
+<tr>
+<td>1DT15ENGO3</td>
+<td>Clair</td>
+<td>15CS12</td>
+</tr>
+<tr>
+<td>1DT15ENG04</td>
+<td>DavId</td>
+<td>15CS13</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Subject Id</th>
+<th>Subject</th>
+<th>Adress</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>15CS11</td>
+<td>SQL</td>
+<td>Goa</td>
+</tr>
+<tr>
+<td>15CS13</td>
+<td>JAVA</td>
+<td>Bengaluru</td>
+</tr>
+<tr>
+<td>15CS12</td>
+<td>C++</td>
+<td>Delhi</td>
+</tr>
+<tr>
+<td>15CS13</td>
+<td>JAVA</td>
+<td>Kochi</td>
+</tr>
+</tbody>
+</table>
+<h4 id="3">不满足3范式的问题<a class="headerlink" href="#3" title="Permanent link">&para;</a></h4>
+<p>不满足3范式的数据库会存在以下问题:
+* 插入问题： 插入数据时，如果只有部分数据，可能导致插入失败（若某列为NOT NULL）。举例2NF里原来的表，若只有<code>Department Id</code>和<code>Office Location</code>，就无法插入
+* 更新问题： 当更新某个字段时，需要更新其它列。举例2NF的表，当更新Pune时， 第1列和第4列都要更新
+* 删除问题： 当删除某些属性时，其他属性也要删除， 举例3NF原来的表，当删除SQL课程时，学生Alex的信息也会丢失</p>
+<h3 id="35nf-bcnf">3.5NF： BCNF<a class="headerlink" href="#35nf-bcnf" title="Permanent link">&para;</a></h3>
+<p>3.5范式用于解决3范式遗留问题<br />
+例如</p>
+<table>
+<thead>
+<tr>
+<th>Student Id</th>
+<th>Subject</th>
+<th>Professor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1DT15ENG01</td>
+<td>SQL</td>
+<td>Prof. Mishra</td>
+</tr>
+<tr>
+<td>1DT15ENG02</td>
+<td>JAVA</td>
+<td>Prof. Anand</td>
+</tr>
+<tr>
+<td>1DT15ENG02</td>
+<td>C++</td>
+<td>Prof. Kanthi</td>
+</tr>
+<tr>
+<td>1DT15ENG03</td>
+<td>JAVA</td>
+<td>Prof. Anand</td>
+</tr>
+<tr>
+<td>1DT15ENG04</td>
+<td>DBMS</td>
+<td>Prof. Lokesh</td>
+</tr>
+</tbody>
+</table>
+<p>说明：
+* 一个学生可以登记多个科目
+* 多个老师可以教授同一个科目
+* 每个科目会有一个老师分配给一个学生</p>
+<p>所以这个表满足3范式，因为<code>Student Id</code>和<code>Subject</code>组成了复合主键，决定了<code>Professor</code>。  </p>
+<p>但是不满足3.5NF，因为<code>Student Id</code>和<code>Subject</code>组成了复合主键，所以<code>Subject</code>是主属性， 而存在<code>Professor</code>依赖<code>Subject</code>， 虽然<code>Subject</code>是主属性，但<code>Professor</code>是非主属性，所以不满足BCNF。</p>
+<p>此表应改成</p>
+<table>
+<thead>
+<tr>
+<th>Student Id</th>
+<th>Professor Id</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1DT15ENG01</td>
+<td>1DTPF01</td>
+</tr>
+<tr>
+<td>1DT15ENG02</td>
+<td>1DTPF02</td>
+</tr>
+<tr>
+<td>1DT15ENG02</td>
+<td>1DTPF03</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Professor ID</th>
+<th>Professor</th>
+<th>Subject</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1DTPF01</td>
+<td>Prof. Mishra</td>
+<td>SQL</td>
+</tr>
+<tr>
+<td>1DTPF02</td>
+<td>Prof. Anand</td>
+<td>JAVA</td>
+</tr>
+<tr>
+<td>1DTPF03</td>
+<td>Prof. Kanthi</td>
+<td>C++</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_2">反范式<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>没有冗余数据的设计未必是好设计，有时为了效率，必须降低范式标准，适当允许保留冗余数据，以达到用空间换时间的目的。</p>
+<p>例如订单表存在<code>商品</code>，<code>单价</code>，<code>数量</code>，<code>总价</code>， 这里总价是冗余的，因为可以通过单价和数量来求得，但总价经常需要，所以冗余可以提高效率。</p>
+<h2 id="having">HAVING 和查询语句优先级<a class="headerlink" href="#having" title="Permanent link">&para;</a></h2>
+<p>SQL查询字句类似C语言的运算符优先级， 虽然标准里没有定义优先级，但大致为以下
+<div class="highlight"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">HAVING</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span>
+</code></pre></div>
+这个顺序可以帮忙理解查询语句是如何执行的，比如因为SELECT优先级低于FROM, 所有只能在FROM中定义alais在SELECT中使用，而不能在SELECT中定义alias并在FROM中使用</p>
+<p>HAVING指令通常和GROUP一起用，因为优先级比GROUP低，所以HAVING可以计算出GROUP的值并进行筛选。</p>
+<p><div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Grade</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="k">HAVING</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">Cno</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+</code></pre></div>
+这个语句筛选出相同Sno记录的个数&gt;3的集合</p>
+<h2 id="view">VIEW和数据冗余<a class="headerlink" href="#view" title="Permanent link">&para;</a></h2>
+<p>View是一种虚拟表，可以将多表的数据关联在一起，也可以做一些冗余数据，如计算平均值</p>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">Cl_avg_age</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">Clno</span><span class="p">,</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">Sage</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">avg_age</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="p">;</span>
+</code></pre></div>
+<h2 id="_3">事物，存储过程和触发器<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>存储过程需要提前创建再使用。 因为存储过程中定义变量， 输入输出明确，所以让数据库操作更安全。
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">PROCEDURE</span><span class="w"> </span><span class="n">ap_returncount</span><span class="w"> </span><span class="o">@</span><span class="n">Sno</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">DECLARE</span><span class="w"> </span><span class="o">@</span><span class="k">count</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">@</span><span class="k">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Number</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">Class</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Clno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">Clno</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">@</span><span class="n">Sno</span><span class="p">)</span><span class="w"> </span><span class="k">RETURN</span><span class="w"> </span><span class="o">@</span><span class="k">count</span><span class="p">;</span>
+</code></pre></div></p>
+<p>触发器是当触发条件时自动执行的命令，如当插入和更新满足条件时自动执行事物回撤。这是基于事物机制的。
+事物可以保证多个操作的原子性， 当莫个操作不满足条件则全部<code>ROLLBACK</code>，回撤所有的操作，例如典型的转账场景，必须要扣除和增加都成功时才能成功。</p>
+<p>但事物导致效率比较低。</p>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TRIGGER</span><span class="w"> </span><span class="n">tri_ins_upd_student</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">AFTER</span><span class="w"> </span><span class="k">INSERT</span><span class="p">,</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="mi">40</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="nb">Number</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">Class</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Clno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">Clno</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">inserted</span><span class="w"> </span><span class="p">))</span><span class="w"> </span><span class="k">ROLLBACK</span><span class="w"> </span><span class="k">TRANSACTION</span><span class="p">;</span>
+</code></pre></div>
+<h2 id="_4">参考<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>https://www.edureka.co/blog/normalization-in-sql/</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+      
+    </article>
+  </div>
+
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+        
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%AD%E5%B0%8F%E6%95%B0%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 编程语言中小数精度问题">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                编程语言中小数精度问题
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../%E5%9C%A8linux%E4%B8%8B%E4%BD%BF%E7%94%A8sdcc%E8%BF%9B%E8%A1%8C%E5%8D%95%E7%89%87%E6%9C%BA%E7%BC%96%E8%AF%91/" class="md-footer__link md-footer__link--next" aria-label="下一页: 在Linux下使用sdcc进行单片机编译">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                在Linux下使用sdcc进行单片机编译
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../js/tex-mml-chtml.js"></script>
+      
+        <script src="../../js/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

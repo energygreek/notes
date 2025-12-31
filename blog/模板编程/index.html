@@ -1,0 +1,1653 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://energygreek.github.io/notes/blog/%E6%A8%A1%E6%9D%BF%E7%BC%96%E7%A8%8B/">
+      
+      
+        <link rel="prev" href="../%E5%8F%B3%E5%80%BC-%E4%B8%B4%E6%97%B6%E5%8F%98%E9%87%8F%E4%B8%8E%E5%BC%95%E7%94%A8/">
+      
+      
+        <link rel="next" href="../%E4%BD%BF%E7%94%A8avahi%E5%B0%86%E4%BC%A0%E7%BB%9F%E6%89%93%E5%8D%B0%E6%9C%BA%E6%94%AF%E6%8C%81%E6%97%A0%E7%BA%BF%E6%89%93%E5%8D%B0/">
+      
+      
+        
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="RSS 订阅" href="../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="已更新内容的 RSS 订阅" href="../../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>模板编程 - Some Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="Some Notes" class="md-header__button md-logo" aria-label="Some Notes" data-md-component="logo">
+      
+  <img src="../../assets/bird.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Some Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              模板编程
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="gray" data-md-color-accent="blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../tags/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tag
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Some Notes" class="md-nav__button md-logo" aria-label="Some Notes" data-md-component="logo">
+      
+  <img src="../../assets/bird.png" alt="logo">
+
+    </a>
+    Some Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Blog
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_2" id="__nav_1_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    归档
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    归档
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2025
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2024/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2024
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2023/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2023
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2022/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2022
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2021/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2021
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2020/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2020
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2019/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2019
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tag
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        概述
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模板的特化
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="模板的特化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        类型特化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        范围特化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        函数匹配优先级
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        自定义类型的范围特化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模板的声明定义分离
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="模板的声明定义分离">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实际运用
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        赘述一下模板的类型
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variadic-templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可变模版variadic templates
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="可变模版variadic templates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实际运用1
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="实际运用1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#c11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        c++11及以上标准
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c11_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        c++11以前的标准
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        直接用c的方式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c17-fold-expression" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        c++17 引入了fold expression
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实际运用2
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="实际运用2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用模板生成并发代码
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实际运用3 工厂模式
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模版与宏定义、虚函数的区别
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependent-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        待决名dependent name
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="待决名dependent name">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#typename" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        typename消歧义
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#template" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        template消歧义
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stdforward" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        std::forward 转发在模版的使用
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="std::forward 转发在模版的使用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        说明一下右值引用
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        参考
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    回到主页
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    元数据
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2021-03-04 00:00:00+00:00" class="md-ellipsis">2021年3月4日</time>
+                      </div>
+                    </li>
+                    
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              需要 5 分钟阅读时间
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+            
+          </nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+  
+
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:ccpp" class="md-tag">c/cpp</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:template-programing" class="md-tag">template programing</a>
+      
+    
+  </nav>
+
+
+
+<h1 id="_1">模板编程<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>模板编程是其它高级语言没有的技术, 也称为范型编程，元编程(meta programing), stl的基石。这种对类型的泛化相当于在编程之上编程</p>
+<h2 id="_2">概述<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>模板可以作用于函数和类，即能泛化<code>类型</code>，也可以泛化<code>大小</code>
+<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="o">&gt;</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">t</span><span class="p">[</span><span class="n">N</span><span class="p">];</span><span class="w"> </span><span class="p">}</span>
+<span class="w"> </span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="o">&gt;</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">Foo</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">t</span><span class="p">[</span><span class="n">N</span><span class="p">];</span><span class="w"> </span><span class="p">};</span>
+
+<span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// array of two int</span>
+<span class="w">    </span><span class="n">foo</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="w">    </span><span class="c1">// class has a array of two int </span>
+<span class="w">    </span><span class="n">Foo</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="o">&gt;</span><span class="w"> </span><span class="n">F</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span>
+</code></pre></div></p>
+<h2 id="_3">模板的特化<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>跟泛化相反的方向，叫特化，编译器会优先使用特化的版本, 而特化有2个方向，<code>类型特化</code>和<code>范围特化</code>  </p>
+<h3 id="_4">类型特化<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>对于特化类型个数的不同，分为偏特化和全特化，全特化即为所有类型都指定，特化类型越多匹配优先级越高 
+注意：模板函数不能偏特化</p>
+<div class="highlight"><pre><span></span><code>template&lt;typename T1, typename T2&gt; struct Foo{};
+template&lt;typename T2&gt; struct Foo&lt;int, T2&gt; {};
+// 全特化
+template&lt;&gt; struct Foo&lt;int,int&gt;{};
+</code></pre></div>
+<p>例如`Foo<int, int> foo'，编译器会使用第三个版本</p>
+<h3 id="_5">范围特化<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>比如常见的指针和引用，这和int, float, class 都是无关的，属于另个维度，也可以说是范围, 在stl为兼容指针做大量的工作  </p>
+<p><div class="highlight"><pre><span></span><code>template &lt;typename T, typename N&gt; struct Foo&lt;T *, N&gt; {};
+</code></pre></div>
+这样'Foo<int *, int> foo'会使用这个版本</p>
+<p>还例如指定对大小的特例化
+<div class="highlight"><pre><span></span><code>//模板
+template&lt;int n&gt; foo(){}
+
+//值特例化
+template&lt;&gt; foo&lt;10&gt; foo(){}
+</code></pre></div>
+那么如果调用<code>foo&lt;10&gt;();</code>时，优先匹配特例化版本</p>
+<h3 id="_6">函数匹配优先级<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>在函数调用时，普通函数的匹配优先级高于模板函数
+<div class="highlight"><pre><span></span><code>template &lt;typename T&gt; void f(T) { std::cout &lt;&lt; &quot;temp\n&quot;; }
+void f(int d) { std::cout &lt;&lt; &quot;temp1\n&quot;; }
+template &lt;&gt; void f(int d) { std::cout &lt;&lt; &quot;temp2\n&quot;; }
+
+f(1); // temp1
+</code></pre></div></p>
+<h3 id="_7">自定义类型的范围特化<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>上面讲的是指针类型和引用类型两种，但如果是自定义类型，那就无穷无尽了，所以模板编程也是'图灵完备'的</p>
+<p>例如以下，创建了一个自定义的类型来包装基本类型(int,float)，这样可以有自定义类型的特化版本
+<div class="highlight"><pre><span></span><code>  template &lt;typename T&gt; struct Decor { using type = T; };
+  template &lt;typename T&gt; struct Strip { using type = T; };
+  template &lt;typename T&gt; struct Strip&lt;Decor&lt;T&gt;&gt; { using type = T; };
+  template &lt;typename T&gt; using StripDecor = typename Strip&lt;T&gt;::type;
+
+  template &lt;typename T&gt; class Row {};
+
+  int main() {
+    using nodecor = Row&lt;int&gt;;
+    using decor = Decor&lt;Row&lt;int&gt;&gt;;
+    // 虽底层同为int, 但nodecor 类型不同于decor类型
+    static_assert(std::is_same&lt;col&gt;, nocol&gt;::value);
+    // 通过Strip取出其底层类型
+    static_assert(std::is_same&lt;StripDecor&lt;col&gt;, nocol&gt;::value);
+    return 0;
+  }
+</code></pre></div></p>
+<h3 id="_8">模板的声明定义分离<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<ol>
+<li>由于template用来生成函数和类，所以编译器需要同时知道template的类型和其细节，所以模板函数不支持将定义放到源文件中</li>
+<li>而且编译器通常是以cpp为编译单元，当编译模板cpp时不知道调用cpp, 编译调用cpp时，不知道模板cpp。所以模板函数不支持将定义放到源文件中</li>
+<li>对于模板类可以将成员函数的定义放到源文件，但要为每个成员函数都添加'template'限定, <strong><em>而且要为实例添加特例化</em></strong>。</li>
+<li>显式特例化支持只声明不定义，而在源文件中为每种所需的类型都特例化，即与3相同。其实显示特例化是不需要特例化而强制特例化。 </li>
+</ol>
+<p>如下，模板类的定义放到cpp中，这样会报错，因为在编译call_foo.cpp时不知到模板定义, 因为没有生成过int版本的Foo。<br />
+为此，必须在foo.cpp里添加<code>template class Foo&lt;int&gt;</code>, 如同4，实在吃力不讨好。
+<div class="highlight"><pre><span></span><code><span class="c1">// foo.h</span>
+<span class="w">    </span><span class="n">template</span><span class="o">&lt;</span><span class="n">typename</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span>
+<span class="w">    </span><span class="n">class</span><span class="w"> </span><span class="n">Foo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">public</span><span class="o">:</span>
+<span class="w">      </span><span class="n">Foo</span><span class="p">();</span>
+<span class="w">      </span><span class="kt">void</span><span class="w"> </span><span class="nf">someMethod</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">x</span><span class="p">);</span>
+<span class="w">    </span><span class="n">private</span><span class="o">:</span>
+<span class="w">      </span><span class="n">T</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="c1">// foo.cpp</span>
+<span class="w">    </span><span class="n">template</span><span class="o">&lt;</span><span class="n">typename</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span>
+<span class="w">    </span><span class="n">Foo</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">Foo</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// ...</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">template</span><span class="o">&lt;</span><span class="n">typename</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">Foo</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">someMethod</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// ...</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="c1">// call_foo.cpp</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">blah_blah_blah</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// ...</span>
+<span class="w">      </span><span class="n">Foo</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">f</span><span class="p">;</span>
+<span class="w">      </span><span class="n">f</span><span class="p">.</span><span class="n">someMethod</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="w">      </span><span class="c1">// ...</span>
+<span class="w">    </span><span class="p">}</span>
+</code></pre></div></p>
+<p>当然把模板的定义放到头文件中会增加可执行文件的体积。</p>
+<h4 id="_9">实际运用<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
+<p>grpc 能以流和非流方式传输，而grpc参数protobuf消息类型是另一个范围。那么要封装grpc方法, 需要封装流+类型</p>
+<p>举例protobuf的消息类型有string, fixed32
+- string
+- fixed32
+- Stream<fixed32>
+- Stream<string></p>
+<p>通过上面的偏特化可以即能区分流和非流又能区分类型</p>
+<h3 id="_10">赘述一下模板的类型<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>上面的模板类型T都是实际编程时定义的类型，但作为图灵完备的模板编程，未决的template类型也可以作为template类型</p>
+<p>如下是一个模板用另一个模板来特例化
+<div class="highlight"><pre><span></span><code>template &lt;typename T&gt; struct Upper {};
+template &lt;template &lt;typename&gt; class T&gt; struct Lower {};
+
+template&lt;typename T&gt;
+Lower&lt;Upper&lt;T&gt;&gt; l;
+</code></pre></div></p>
+<h2 id="variadic-templates">可变模版variadic templates<a class="headerlink" href="#variadic-templates" title="Permanent link">&para;</a></h2>
+<p>c中有可变参数<code>...</code>和gcc内置<code>__VA_ARGS__</code>宏定义, 实现不同个数的变量打印。这是由编译期实现的，会将format的格式符替换成参数
+<div class="highlight"><pre><span></span><code>int printf ( const char * format, ... );
+</code></pre></div></p>
+<p>c++有模版，而且在c++11之后引入了动态参数模版，即模版函数或类可以使用动态参数</p>
+<h3 id="1">实际运用1<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<p>在实际项目中手动跑单元测试用例的时候，不希望再去看日志文件，而是想日志直接输出到终端, 有以下办法</p>
+<h4 id="c11">c++11及以上标准<a class="headerlink" href="#c11" title="Permanent link">&para;</a></h4>
+<p>可以使用动态参数模版替换原本的日志打印函数
+<div class="highlight"><pre><span></span><code><span class="cp">#undef log_debug</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">First</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="p">...</span><span class="n">Rest</span><span class="o">&gt;</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">log_debug</span><span class="p">(</span><span class="n">First</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">first</span><span class="p">,</span><span class="w"> </span><span class="n">Rest</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="n">rest</span><span class="p">){</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">fmt</span><span class="o">::</span><span class="n">format</span><span class="p">(</span><span class="n">first</span><span class="p">,</span><span class="w"> </span><span class="n">rest</span><span class="w"> </span><span class="p">...)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 这时日志就直接输出到终端了, 这里使用了fmt库</span>
+<span class="n">log_debug</span><span class="p">(</span><span class="s">&quot;aasdas{}&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bbbb&quot;</span><span class="p">);</span>
+</code></pre></div></p>
+<p>也可简单写成
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="p">...</span><span class="n">Args</span><span class="o">&gt;</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">log_debug</span><span class="p">(</span><span class="n">Args</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">...</span><span class="n">args</span><span class="p">){</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">fmt</span><span class="o">::</span><span class="n">format</span><span class="p">(</span><span class="n">args</span><span class="p">...)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p>如果不使用fmt格式化，还可以用
+<div class="highlight"><pre><span></span><code><span class="cp">#undef log_debug</span>
+<span class="c1">// 定义一个空函数</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">log_debug</span><span class="p">(){}</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">First</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">Rest</span><span class="o">&gt;</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">log_debug</span><span class="p">(</span><span class="n">First</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">first</span><span class="p">,</span><span class="w"> </span><span class="n">Arg</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">...</span><span class="n">arg</span><span class="p">){</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">first</span><span class="p">;</span>
+<span class="w">    </span><span class="n">log_debug</span><span class="p">(</span><span class="n">arg</span><span class="p">...);</span>
+<span class="p">}</span>
+</code></pre></div>
+需要解释一下，函数<code>log_debug()</code>必须要先声明，因为模版实例化的的最终要调用这个无参的函数<br />
+模拟一下堆栈, 因为参数在每次递归时减少一个，所以最终是0个参数
+<div class="highlight"><pre><span></span><code>log_debug(1, 0.2, &quot;aaa&quot;);
+log_debug(0.2, &quot;aaa&quot;);
+log_debug(&quot;aaa&quot;);
+log_debug();
+</code></pre></div></p>
+<h4 id="c11_1">c++11以前的标准<a class="headerlink" href="#c11_1" title="Permanent link">&para;</a></h4>
+<p>可以使用宏定义来替换了, 然后需要重载<code>,</code>方法
+<div class="highlight"><pre><span></span><code><span class="cp">#define log_debug(...) std::cout , __VA_ARGS__ , std::endl</span>
+
+<span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="p">,(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">out</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">t</span><span class="p">;</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">out</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">//overloaded version to handle all those special std::endl and others...</span>
+<span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="p">,(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="p">(</span><span class="o">*</span><span class="n">f</span><span class="p">)(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">out</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">f</span><span class="p">;</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">out</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h4 id="c">直接用c的方式<a class="headerlink" href="#c" title="Permanent link">&para;</a></h4>
+<p>因为printf是支持varidic的
+<div class="highlight"><pre><span></span><code><span class="cp">#undef log_debug</span>
+
+<span class="cp">#define log_debug(...) printf(__VA_ARGS__), printf(&quot;\n&quot;)</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">log_debug</span><span class="p">(</span><span class="s">&quot;example&quot;</span><span class="p">,</span><span class="s">&quot;output&quot;</span><span class="p">,</span><span class="s">&quot;filler&quot;</span><span class="p">,</span><span class="s">&quot;text&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h4 id="c17-fold-expression">c++17 引入了<code>fold expression</code><a class="headerlink" href="#c17-fold-expression" title="Permanent link">&para;</a></h4>
+<p>可以改写为
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="p">...</span><span class="n">Args</span><span class="o">&gt;</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">log_debug</span><span class="p">(</span><span class="n">Args</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">...</span><span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">args</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p>动态参数模版除了以上的用法，还有更多用处, 例如<code>std::tupe</code>的实现</p>
+<h3 id="2">实际运用2<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<h4 id="_11">使用模板生成并发代码<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h4>
+<p>以下代码实现复制二维数组，
+<div class="highlight"><pre><span></span><code>for( size_t ch=0 ; ch&lt;channelNum ; ++ch ) {
+    for( size_t i=0; i&lt;length ; ++i ) {
+        out[ch][i]=in[ch][i];
+    }
+}
+</code></pre></div></p>
+<p>但以下理论更快，没有两层for，前提是知道channel大小
+<div class="highlight"><pre><span></span><code>for(size_t i=0;i&lt;length;++i) {
+    out[0][i]=in[0][i];
+    out[1][i]=in[1][i];
+    out[2][i]=in[2][i];
+    out[3][i]=in[3][i];
+}
+</code></pre></div></p>
+<p>但如果用模板，就不需要知道channel大小，自动生成上面的代码</p>
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="o">&gt;</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Copy</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">go</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="o">**</span><span class="k">const</span><span class="w"> </span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">**</span><span class="k">const</span><span class="w"> </span><span class="n">in</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Copy</span><span class="o">&lt;</span><span class="n">count</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="o">&gt;::</span><span class="n">go</span><span class="p">(</span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="n">in</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
+<span class="w">    </span><span class="n">out</span><span class="p">[</span><span class="n">count</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">in</span><span class="p">[</span><span class="n">count</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">];</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">template</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Copy</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">go</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="o">**</span><span class="k">const</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">**</span><span class="k">const</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+<span class="p">};</span>
+
+<span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="kt">int</span><span class="w"> </span><span class="n">channelNum</span><span class="o">&gt;</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">parall_copy</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="o">**</span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">**</span><span class="n">in</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">length</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">length</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Copy</span><span class="o">&lt;</span><span class="n">channelNum</span><span class="o">&gt;::</span><span class="n">go</span><span class="p">(</span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="n">in</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>需要提醒的，如同打印日志的，0的特例化不能省，否则编译出错</p>
+<h3 id="3">实际运用3 工厂模式<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
+<p>在使用spdlog时发现有使用到template未决名, 用来实现两个维度的工厂模式。</p>
+<p>第一层提供两种sink的工厂，而其factory是未决名，所以要加上<code>Factory::template</code>消歧义，不然<code>&lt;</code>会当成小于号  </p>
+<div class="highlight"><pre><span></span><code><span class="c1">//</span>
+<span class="c1">// factory functions</span>
+<span class="c1">//</span>
+<span class="n">template</span><span class="o">&lt;</span><span class="n">typename</span><span class="w"> </span><span class="n">Factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">default_factory</span><span class="o">&gt;</span>
+<span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">logger</span><span class="o">&gt;</span><span class="w"> </span><span class="n">basic_logger_mt</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">logger_name</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">filename_t</span><span class="w"> </span><span class="o">&amp;</span><span class="n">filename</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">truncate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Factory</span><span class="o">::</span><span class="n">template</span><span class="w"> </span><span class="n">create</span><span class="o">&lt;</span><span class="n">sinks</span><span class="o">::</span><span class="n">basic_file_sink_mt</span><span class="o">&gt;</span><span class="p">(</span><span class="n">logger_name</span><span class="p">,</span><span class="w"> </span><span class="n">filename</span><span class="p">,</span><span class="w"> </span><span class="n">truncate</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">template</span><span class="o">&lt;</span><span class="n">typename</span><span class="w"> </span><span class="n">Factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">default_factory</span><span class="o">&gt;</span>
+<span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">logger</span><span class="o">&gt;</span><span class="w"> </span><span class="n">basic_logger_st</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">logger_name</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">filename_t</span><span class="w"> </span><span class="o">&amp;</span><span class="n">filename</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">truncate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Factory</span><span class="o">::</span><span class="n">template</span><span class="w"> </span><span class="n">create</span><span class="o">&lt;</span><span class="n">sinks</span><span class="o">::</span><span class="n">basic_file_sink_st</span><span class="o">&gt;</span><span class="p">(</span><span class="n">logger_name</span><span class="p">,</span><span class="w"> </span><span class="n">filename</span><span class="p">,</span><span class="w"> </span><span class="n">truncate</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>此时factory可以是<code>synchronous_factory</code>, 也可以是异步版本，但这需要用户自己实现。
+<div class="highlight"><pre><span></span><code><span class="c1">// Default logger factory-  creates synchronous loggers</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">synchronous_factory</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">template</span><span class="o">&lt;</span><span class="n">typename</span><span class="w"> </span><span class="n">Sink</span><span class="p">,</span><span class="w"> </span><span class="n">typename</span><span class="p">...</span><span class="w"> </span><span class="n">SinkArgs</span><span class="o">&gt;</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">spdlog</span><span class="o">::</span><span class="n">logger</span><span class="o">&gt;</span><span class="w"> </span><span class="n">create</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">logger_name</span><span class="p">,</span><span class="w"> </span><span class="n">SinkArgs</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="p">...</span><span class="w"> </span><span class="n">args</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">sink</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Sink</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">forward</span><span class="o">&lt;</span><span class="n">SinkArgs</span><span class="o">&gt;</span><span class="p">(</span><span class="n">args</span><span class="p">)...);</span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">new_logger</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">logger</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">logger_name</span><span class="p">),</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">sink</span><span class="p">));</span>
+<span class="w">        </span><span class="n">details</span><span class="o">::</span><span class="n">registry</span><span class="o">::</span><span class="n">instance</span><span class="p">().</span><span class="n">initialize_logger</span><span class="p">(</span><span class="n">new_logger</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">new_logger</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="n">using</span><span class="w"> </span><span class="n">default_factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">synchronous_factory</span><span class="p">;</span>
+</code></pre></div></p>
+<p>简化为下面的demo，固然可以直接使用call_dd的方式，但维度只有一个。而call_dd2则有2个维度了<br />
+但必须使用<code>T::template</code>消歧义, 因为此时的foo未决名, 不知道是那个类里面的foo。
+<div class="highlight"><pre><span></span><code>  struct AA {
+    template &lt;typename cc&gt; static void foo() { std::cout &lt;&lt; &quot;dd::foo\n&quot;; };
+  };
+
+  struct BB {
+    template &lt;typename cc&gt; static void foo() { std::cout &lt;&lt; &quot;dd::foo\n&quot;; };
+  };
+
+  template &lt;typename T&gt; void call_dd() { AA::foo&lt;T&gt;(); }
+  template &lt;typename T, typename K&gt; void call_dd2() { T::template foo&lt;K&gt;(); }
+
+  int main() {
+    call_dd&lt;void&gt;();
+    call_dd2&lt;AA&gt;();
+    call_dd2&lt;AA, int&gt;();
+    call_dd2&lt;BB, long&gt;();
+  }
+</code></pre></div></p>
+<h2 id="_12">模版与宏定义、虚函数的区别<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<ol>
+<li>宏定义在预处理期执行，模板在编译期执行，而虚函数也称动态绑定在运行时执行</li>
+<li>宏和模板都将运行时的工作提前了，用编译时间换取运行效率</li>
+<li>宏定义没有类型检查，这点模板比较好</li>
+<li>模板虽然会延长编译时间，但当编译期实例化类型后，查找模板函数和查找普通函数的速度几乎相同</li>
+</ol>
+<h2 id="dependent-name">待决名dependent name<a class="headerlink" href="#dependent-name" title="Permanent link">&para;</a></h2>
+<ol>
+<li>待决名的意思是在定义的地方，类型还不能决断，需要延后到实例化确定时。而非待决名指类型在定义的地方已经确定。  </li>
+<li>延后将导致此时无法在定义点进行错误检查，以及消除<code>typename</code>和<code>template</code>歧义，这导致需要在调用点加上template</li>
+</ol>
+<p>待决名如:
+<div class="highlight"><pre><span></span><code>template&lt;typename T&gt;
+struct X : B&lt;T&gt; // &quot;B&lt;T&gt;&quot; 取决于 T
+{
+    typename T::A* pa; // &quot;T::A&quot; 取决于 T
+                       // （此 &quot;typename&quot; 的使用的目的见下文）
+    void f(B&lt;T&gt;* pb)
+    {
+        static int i = B&lt;T&gt;::i; // &quot;B&lt;T&gt;::i&quot; 取决于 T
+        pb-&gt;j++; // &quot;pb-&gt;j&quot; 取决于 T
+    }
+};
+</code></pre></div></p>
+<p>让人吃惊的例子, 这就是非待决名的情况下，立即绑定
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">g</span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;g(double)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">S</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">f</span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">g</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="c1">// &quot;g&quot; 是非待决名，现在绑定</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">g</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;g(int)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">g</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w">  </span><span class="c1">// 调用 g(int)</span>
+
+<span class="w">    </span><span class="n">S</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">s</span><span class="p">;</span>
+<span class="w">    </span><span class="n">s</span><span class="p">.</span><span class="n">f</span><span class="p">();</span><span class="w"> </span><span class="c1">// 调用 g(double)</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h3 id="typename">typename消歧义<a class="headerlink" href="#typename" title="Permanent link">&para;</a></h3>
+<p>在模板（包括别名模版）的声明或定义中，不是当前实例化的成员且取决于某个模板形参的名字不会被认为是类型，<br />
+除非使用关键词 typename 或它已经被设立为类型名（例如用 typedef 声明或通过用作基类名）。 </p>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+
+<span class="n">template</span><span class="o">&lt;</span><span class="n">typename</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">foo</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="c1">// std::vector&lt;T&gt;::const_iterator 是待决名，</span>
+<span class="w">    </span><span class="n">typename</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">const_iterator</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// 下列内容因为没有 &#39;typename&#39; 而会被解析成</span>
+<span class="w">    </span><span class="c1">// 类型待决的成员变量 &#39;const_iterator&#39; 和某变量 &#39;p&#39; 的乘法。</span>
+<span class="w">    </span><span class="c1">// 因为在此处有一个可见的全局 &#39;p&#39;，所以此模板定义能编译。</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">const_iterator</span><span class="o">*</span><span class="w"> </span><span class="n">p</span><span class="p">;</span><span class="w"> </span>
+
+<span class="w">    </span><span class="k">typedef</span><span class="w"> </span><span class="n">typename</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">const_iterator</span><span class="w"> </span><span class="n">iter_t</span><span class="p">;</span>
+<span class="w">    </span><span class="n">iter_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">p2</span><span class="p">;</span><span class="w"> </span><span class="c1">// iter_t 是待决名，但已知它是类型名</span>
+<span class="p">}</span>
+
+<span class="n">template</span><span class="o">&lt;</span><span class="n">typename</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">S</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">typedef</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">value_t</span><span class="p">;</span><span class="w"> </span><span class="c1">// 当前实例化的成员</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">f</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">S</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">value_t</span><span class="w"> </span><span class="n">n</span><span class="p">{};</span><span class="w"> </span><span class="c1">// S&lt;T&gt; 待决，但不需要 &#39;typename&#39;</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">v</span><span class="p">;</span>
+<span class="w">    </span><span class="n">foo</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w"> </span><span class="c1">// 模板实例化失败：类型 std::vector&lt;int&gt; 中没有</span>
+<span class="w">            </span><span class="c1">// 名字是 &#39;const_iterator&#39; 的成员变量</span>
+<span class="w">    </span><span class="n">S</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">().</span><span class="n">f</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="template">template消歧义<a class="headerlink" href="#template" title="Permanent link">&para;</a></h3>
+<p>与此相似，模板定义中不是当前实例化的成员的待决名同样不被认为是模板名，除非使用消歧义关键词 template，或它已被设立为模板名： </p>
+<p><div class="highlight"><pre><span></span><code>template&lt;typename T&gt;
+struct S
+{
+    template&lt;typename U&gt; void foo() {}
+};
+
+template&lt;typename T&gt;
+void bar()
+{
+    S&lt;T&gt; s;
+    s.foo&lt;T&gt;();          // 错误：&lt; 被解析为小于运算符
+    s.template foo&lt;T&gt;(); // OK
+}
+</code></pre></div>
+template 消歧义可以使用
+<div class="highlight"><pre><span></span><code>T::template
+s.template
+this-&gt;template
+</code></pre></div></p>
+<h2 id="stdforward">std::forward 转发在模版的使用<a class="headerlink" href="#stdforward" title="Permanent link">&para;</a></h2>
+<p>为什么完美转发的对象必须是右值引用？</p>
+<h3 id="_13">说明一下右值引用<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code> 引用类型   可以引用的值类型    使用场景
+非常量左值   常量左值    非常量右值   常量右值
+非常量左值引用     Y   N   N   N   无
+常量左值引用  Y   Y   Y   Y   常用于类中构建拷贝构造函数
+非常量右值引用     N   N   Y   N   移动语义、完美转发
+常量右值引用  N   N   Y   Y   无实际用途
+</code></pre></div>
+<h2 id="_14">参考<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<p>https://en.cppreference.com/w/cpp/language/parameter_pack
+https://en.cppreference.com/w/cpp/language/fold
+https://en.cppreference.com/w/cpp/language/overload_resolution#Best_viable_function</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+      
+    </article>
+  </div>
+
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+        
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../%E5%8F%B3%E5%80%BC-%E4%B8%B4%E6%97%B6%E5%8F%98%E9%87%8F%E4%B8%8E%E5%BC%95%E7%94%A8/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 右值, 临时变量与引用">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                右值, 临时变量与引用
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../%E4%BD%BF%E7%94%A8avahi%E5%B0%86%E4%BC%A0%E7%BB%9F%E6%89%93%E5%8D%B0%E6%9C%BA%E6%94%AF%E6%8C%81%E6%97%A0%E7%BA%BF%E6%89%93%E5%8D%B0/" class="md-footer__link md-footer__link--next" aria-label="下一页: 使用avahi将传统打印机支持无线打印">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                使用avahi将传统打印机支持无线打印
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../js/tex-mml-chtml.js"></script>
+      
+        <script src="../../js/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1727 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://energygreek.github.io/notes/blog/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8Brhce8%E4%B8%8A%E8%AF%BE%E7%AC%94%E8%AE%B0/">
+      
+      
+        <link rel="prev" href="../sql%E4%BC%98%E5%85%88%E7%BA%A7%E9%97%AE%E9%A2%98/">
+      
+      
+        <link rel="next" href="../linux-%E4%B8%AD%E6%96%AD%E8%AF%B7%E6%B1%82/">
+      
+      
+        
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="RSS 订阅" href="../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="已更新内容的 RSS 订阅" href="../../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>记录一下rhce8上课笔记 - Some Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#rhce8" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="Some Notes" class="md-header__button md-logo" aria-label="Some Notes" data-md-component="logo">
+      
+  <img src="../../assets/bird.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Some Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              记录一下rhce8上课笔记
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="gray" data-md-color-accent="blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../tags/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tag
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Some Notes" class="md-nav__button md-logo" aria-label="Some Notes" data-md-component="logo">
+      
+  <img src="../../assets/bird.png" alt="logo">
+
+    </a>
+    Some Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Blog
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_2" id="__nav_1_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    归档
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    归档
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2025
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2024/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2024
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2023/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2023
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2022/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2022
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2021/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2021
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2020/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2020
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2019/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2019
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tag
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rhcia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RHCIA
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RHCIA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nmcli-connection-downup-connection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        修改了网络信息之后，必须使用nmcli connection down和up connection才会生效
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#httpdportportsemanagetagjourneyctl-e" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        配置httpd服务时，修改port后，因为port非标准端口，需要用semanage打tag。否则失败，可以查看journeyctl -e 查看到错误信息和解决办法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#homeadmins-adminusr-s-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        创建/home/admins 目录，并设置在目录中创建的文件，其组所有权自动设置为 adminusr。 这里就是设置s位，有数值方法和+-法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#autofs-etcautomasterd-autofs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        autofs 挂载有两个关键，第一在/etc/auto.master.d/ 目录下创建后缀名为autofs的文件， 第二是编辑挂载配置文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setfacl-getfacl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        setfacl 和getfacl 设置和显示文件属性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rootlinux-rdlocal-ctrlx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重置root密码，在linux 行末追加 rd.local, 按ctrl+x 启动
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        逻辑卷扩容
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-s" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        创建逻辑分区, 注意避免磁盘不够用，尽量共用上一题的磁盘。而且创建卷组的时候不要忘记-s参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#swapfstab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        创建新的swap分区，注意需要修改fstab, 而且验证的时候，不需要重启系统，而是执行
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vdo-vdologicalsize-5g-gb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vdo --vdoLogicalSize 5G, 不能使用GB
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vdo-mount" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vdo 持久挂载 mount
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rhce" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RHCE
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RHCE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        创建inventory 文件， 子组的写法为
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ansiblecfg-etcansbileansiblecfg-ansbile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        创建ansible.cfg 文件，可以复制 /etc/ansbile/ansible.cfg 到～/ansbile/目录下
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ansbile-ad-hoc-yum-ansible-ansible-m-a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ansbile ad-hoc 添加yum 源 ansible 模块的使用方法 ansible 主机名 -m 模块 -a '参数'
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安装软件包
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rhel-system-roles-roles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        同步时间依赖角色，安装角色包'rhel-system-roles' 需要在配置文件里添加上roles路径
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ansible-galaxy-roles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用ansible-galaxy 命令安装角色，安装到本地roles目录
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        创建apache角色， 角色对应一系列的任务和模板文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#balancer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        执行balancer 角色, 创建一个负载均衡
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="执行balancer 角色, 创建一个负载均衡">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bindbalance-roletemplate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可能出现的错误，提示应该使用bind，这是由于balance role的template 错误
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blockrescuealways-lvolwhen-play" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        创建逻辑卷，考验block/rescue/always, 使用lvol，when 和play对齐
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hosts-jinija-forinventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        创建hosts文件， 考验jinija 的for循环和读inventory文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#web-server-setypehttpd_system_content_t" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        创建web server, 注意将文件标注setype为httpd_system_content_t
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loopsitem-regexslineinfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        创建硬件报告，用到loops进行数组循环，内置变量item和 regexs匹配，lineinfile 进行文件编辑
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ansible-vault" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        创建加密文件，用到ansible-vault命令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ansible-playbook-vault-password-filesecrettxt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        添加用户， ansible-playbook 通过 --vault-password-file=secret.txt 来传密码文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ansible-vault-rekey" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        修改密码, 使用ansible-vault rekey 修改密码，或者先解密后加密
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#copywhen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        修改文件内容, 使用copy模块，以及when条件判断
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第二次排错
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第二次排错">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ansible-galaxy-srcname" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ansible-galaxy 安装角色, 指定方法分别是 src/name
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timesync-doc-timedatectl-system-clock-syncronize-yes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        timesync 看doc 示例， 验证方法是看timedatectl 看system clock syncronize 为 yes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hosts-for-host-in-groupsall-hostvarshostansible_facts-endfor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        创建hosts, 要用 {% for host in groups.all %} {{ hostvars[host].ansible_facts }} {% endfor %}
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#firewalldimmediate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用firewalld模块时，需要指定immediate 参数，确保能立即生效
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#urwxgrwxsorw-urwx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        设置文件的权限时，应使用u=rwx,g=rwxs,o=rw, 而不是u+rwx，原因很好理解
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    回到主页
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    元数据
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2020-08-29 00:00:00+00:00" class="md-ellipsis">2020年8月29日</time>
+                      </div>
+                    </li>
+                    
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              需要 5 分钟阅读时间
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+            
+          </nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+  
+
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:linux" class="md-tag">linux</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:rhce" class="md-tag">rhce</a>
+      
+    
+  </nav>
+
+
+
+<h1 id="rhce8">记录一下rhce8上课笔记<a class="headerlink" href="#rhce8" title="Permanent link">&para;</a></h1>
+<ol>
+<li>进入nfs，autofs目录卡住，如何退出，应该是进入了D状态 </li>
+<li>chrome 需要笔记本插件，js控制插件</li>
+<li>修改root密码时，在linux 选项后面添加 rd.break 然后默认进入内核根目录，然后rw重新挂载系统根目录 /sysroot/ </li>
+<li>fdisk 设置分区类型: 在创建分区结束后，使用<code>t</code>来标记文件类型, 然后使用<code>L</code>查看类型代码，查找到Linux swap 对应的代码是85</li>
+</ol>
+<h2 id="rhcia">RHCIA<a class="headerlink" href="#rhcia" title="Permanent link">&para;</a></h2>
+<h3 id="nmcli-connection-downup-connection">修改了网络信息之后，必须使用nmcli connection down和up connection才会生效<a class="headerlink" href="#nmcli-connection-downup-connection" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>nmtui connection down Wired_connection1
+nmtui connection up Wired_connection1
+</code></pre></div>
+<h3 id="httpdportportsemanagetagjourneyctl-e">配置httpd服务时，修改port后，因为port非标准端口，需要用semanage打tag。否则失败，可以查看journeyctl -e 查看到错误信息和解决办法<a class="headerlink" href="#httpdportportsemanagetagjourneyctl-e" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>semanage port -a -t http_port_t -p tcp 82
+</code></pre></div>
+<h3 id="homeadmins-adminusr-s-">创建/home/admins 目录，并设置在目录中创建的文件，其组所有权自动设置为 adminusr。 这里就是设置s位，有数值方法和+-法<a class="headerlink" href="#homeadmins-adminusr-s-" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>chmod 2770 /home/admins
+
+# 或
+
+chmod o-x /home/admins
+chmod o-r /home/admins
+chmod g+w /home/admins
+chmod g+s /home/admins # 这里设置组的s位
+</code></pre></div>
+<p>验证方法，进入目录创建文件，查看组名</p>
+<h3 id="autofs-etcautomasterd-autofs">autofs 挂载有两个关键，第一在/etc/auto.master.d/ 目录下创建后缀名为autofs的文件， 第二是编辑挂载配置文件<a class="headerlink" href="#autofs-etcautomasterd-autofs" title="Permanent link">&para;</a></h3>
+<p>内容格式
+<div class="highlight"><pre><span></span><code># cat /etc/auto.master.d/indirect
+#主挂载点   挂载配置
+/internal   /etc/auto.demo
+</code></pre></div></p>
+<p>内容配置，* 表示所有目录（根据nfsserver的情况）， 和&amp;搭配使用
+<div class="highlight"><pre><span></span><code># cat /etc/auto.demo
+# 间接挂载目录    挂载配置    挂载路径（nfs地址）
+*   -rw,fstype=nfs4,sync    servera:/shares/indirect/&amp;
+</code></pre></div></p>
+<h3 id="setfacl-getfacl">setfacl 和getfacl 设置和显示文件属性<a class="headerlink" href="#setfacl-getfacl" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>设置natash用户读写权限
+setfacl u:natasha:rw    /var/tmp/fstab
+设置harry用户没有任何权限 
+setfacl u:harry:-   /var/tmp/fstab
+</code></pre></div>
+<h3 id="rootlinux-rdlocal-ctrlx">重置root密码，在linux 行末追加 rd.local, 按ctrl+x 启动<a class="headerlink" href="#rootlinux-rdlocal-ctrlx" title="Permanent link">&para;</a></h3>
+<p>重新挂载系统根目录, chroot到根目录和修改密码
+<div class="highlight"><pre><span></span><code>mount -orw,remount /systemroot/
+chroot /systemroot/
+passwd
+</code></pre></div></p>
+<h3 id="_1">逻辑卷扩容<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>设置分区start位置的时候，输入2048s。 s指扇区，一个扇区为512字节， 2048s指1M，这1M的分区为esp分区</p>
+<p>扩容命令lvextrend，这个扩容只是将逻辑卷扩容， 而题目要求对文件系统扩容， 还需要执行文件系统类型对应的扩容命令如resize2fs(ext), xfs_growfs(xfs)。 
+但对lvextend命令添加 -r 参数可以一步到位
+<div class="highlight"><pre><span></span><code># 扩容到300MB
+lvextend -r -L 300MB /dev/new_redhat/lv1
+</code></pre></div></p>
+<h3 id="-s">创建逻辑分区, 注意避免磁盘不够用，尽量共用上一题的磁盘。而且创建卷组的时候不要忘记-s参数<a class="headerlink" href="#-s" title="Permanent link">&para;</a></h3>
+<p>题目可能不是直接给分区大小，而是给出扩展块大小和拓展块个数，其实分区大小=拓展块大小 × 拓展块个数。 在lvcreate -l 来指定块个数 </p>
+<p>这时必须使用msdos分区类型才有主分区和拓展分区，而且为拓展分区分配剩余的所有空间。 最后在拓展分区上创建逻辑分区， 并将创建的逻辑分区加入卷组</p>
+<p>创建分区，大小通过上面的算法计算出来
+<div class="highlight"><pre><span></span><code>parted 
+mkpart
+print
+exit
+</code></pre></div></p>
+<p>创建卷组
+<div class="highlight"><pre><span></span><code>vgcreate -s 20MB -n npgroup /dev/vdb2
+</code></pre></div>
+创建逻辑卷, 注意是小写l
+<div class="highlight"><pre><span></span><code>lvcreate -l 45 -n np npgroup
+</code></pre></div>
+这样就创建了一个 20×45 = 900MB的逻辑卷</p>
+<h3 id="swapfstab">创建新的swap分区，注意需要修改fstab, 而且验证的时候，不需要重启系统，而是执行<a class="headerlink" href="#swapfstab" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>systemctl daemon-reload 
+swapon -a  # 类似mount -a
+swapon --show 
+</code></pre></div>
+<h3 id="vdo-vdologicalsize-5g-gb">vdo  --vdoLogicalSize 5G, 不能使用GB<a class="headerlink" href="#vdo-vdologicalsize-5g-gb" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code>vdo create --name test --vdoLogicalSize 5G --device /dev/vdb
+</code></pre></div>
+<code>blkid</code> 查到 UUID, 最后添加到fstab</p>
+<h3 id="vdo-mount">vdo 持久挂载 mount<a class="headerlink" href="#vdo-mount" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>default,x-systemd.requires=vdo.service
+</code></pre></div>
+<h2 id="rhce">RHCE<a class="headerlink" href="#rhce" title="Permanent link">&para;</a></h2>
+<p>ansible的有用命令
+ansbile-doc -l | grep  查找模块和介绍
+ansible-doc 模块 查看模块具体说明</p>
+<h3 id="inventory">创建inventory 文件， 子组的写法为<a class="headerlink" href="#inventory" title="Permanent link">&para;</a></h3>
+<p>[webservices:children]
+prod</p>
+<p>prod 是webserverices组的子组</p>
+<h3 id="ansiblecfg-etcansbileansiblecfg-ansbile">创建ansible.cfg 文件，可以复制 /etc/ansbile/ansible.cfg 到～/ansbile/目录下<a class="headerlink" href="#ansiblecfg-etcansbileansiblecfg-ansbile" title="Permanent link">&para;</a></h3>
+<p>容易忘记的选项是远程登陆身份， 即配置 remote_user = devops
+如果环境没有配置免密登陆，需要在[defaults] 栏添加 <code>ask_pass = True</code></p>
+<p>验证方法 <code>ansible all -m ping</code></p>
+<h3 id="ansbile-ad-hoc-yum-ansible-ansible-m-a">ansbile ad-hoc 添加yum 源  ansible 模块的使用方法 ansible 主机名 -m 模块 -a '参数'<a class="headerlink" href="#ansbile-ad-hoc-yum-ansible-ansible-m-a" title="Permanent link">&para;</a></h3>
+<p>脚本要添加可执行权限</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+
+<span class="c1"># 先要切换到工作目录</span>
+<span class="nb">cd</span><span class="w"> </span>/home/devops/ansible/
+
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>yum-repository<span class="w">  </span>-a<span class="w"> </span><span class="s1">&#39;name=  description=  baseurl=  enabled= gpgcheck= gpgkey= &#39;</span>
+</code></pre></div>
+<h3 id="_2">安装软件包<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>安装软件包如'Development Tools', 需要在包名前面加'@'即 '@Development Tools'
+验证yaml 语法格式: <code>ansible-playbook --syntax-check *.yml</code></p>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">install  development tools</span>
+<span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dev</span>
+<span class="w">  </span><span class="nt">tasks</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">install development tools</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">yum</span><span class="p p-Indicator">:</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;@Development</span><span class="nv"> </span><span class="s">Tools&quot;</span>
+<span class="w">          </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">present</span><span class="w">                  </span>
+</code></pre></div>
+<h3 id="rhel-system-roles-roles">同步时间依赖角色，安装角色包'rhel-system-roles' 需要在配置文件里添加上roles路径<a class="headerlink" href="#rhel-system-roles-roles" title="Permanent link">&para;</a></h3>
+<p>playbook 示例在/usr/share/ansibe/roles/rhel-system-roles.timesync/Readme.md
+现成的yml示例在/usr/share/doc/rhel-system-roles/timesync/example-timesync-playbook.yml</p>
+<div class="highlight"><pre><span></span><code># ansible.cfg
+[default]
+roles_path = /home/devops/ansible/roles:/usr/share/ansible/roles
+</code></pre></div>
+<h3 id="ansible-galaxy-roles">使用ansible-galaxy 命令安装角色，安装到本地roles目录<a class="headerlink" href="#ansible-galaxy-roles" title="Permanent link">&para;</a></h3>
+<p>yml文件很简单, 执行命令 ansible-galaxy install -r roles/requirement.yml -p roles/
+-p 表示安装路径 </p>
+<div class="highlight"><pre><span></span><code>- name: balancer
+  file: /home/devops/ansible/files/5/haproxy.tar
+</code></pre></div>
+<h3 id="apache">创建apache角色， 角色对应一系列的任务和模板文件<a class="headerlink" href="#apache" title="Permanent link">&para;</a></h3>
+<p>通过<code>ansible-galaxy init apache</code> 来初始化角色目录，修改角色目录下的tasks/mail.yml 来添加任务，任务所需的模板文件在同级目录templates下<br />
+通过<code>ansible servera -m setup</code> 来查询环境变量， 在模板文件中使用<code>ansible_facts['fqdn']</code> 来引用变量
+题目说的hostname 是<code>serverc.lab.example.com</code> 对应变量是fqdn, 另外一个是ip即 ['default_ipv4']['address']</p>
+<p>例如，安装httpd用到yum模块， 启用httpd 用到service模块， 防火墙配置用到firewalld模块
+<div class="highlight"><pre><span></span><code># home/devops/ansible/role/apache/tasks/main.yml
+
+---
+- name: install httpd
+  yum:
+    name: httpd
+    state: present
+
+- name: enable httpd
+  service:
+    name: httpd
+    state: started
+    enabled: yes
+
+- name: firewalld config
+  firewalld:
+    service: httpd
+    immediate: yes
+    permanent: yes
+    state: enabled
+
+- name: install templates
+  template:
+    src: index.html.j2
+    dest: /var/www/html/index.html 
+</code></pre></div></p>
+<p>模块文件放到templates目录下
+<div class="highlight"><pre><span></span><code># home/devops/ansible/role/apache/templates/index.html.j2
+Welcome to {{ ansible_facts[&#39;fqdn&#39;] }} on {{ ansible_facts[&#39;default_ipv4&#39;][&#39;address&#39;] }}
+</code></pre></div></p>
+<p>最后还需要创建一个playbook, 如同其他playbook 一样执行
+<div class="highlight"><pre><span></span><code># newrole.yml
+---
+- name: install new role
+  hosts: webservers
+  roles:
+    - apache
+</code></pre></div></p>
+<h3 id="balancer">执行balancer 角色, 创建一个负载均衡<a class="headerlink" href="#balancer" title="Permanent link">&para;</a></h3>
+<p>验证：
+ssh到serverd 上，curl localhost, 先是访问的serverb, 然后访问的serverc</p>
+<div class="highlight"><pre><span></span><code>---
+- name: deploy apache on webservers
+  hosts: webservers
+  roles:
+    - apache
+
+- name: deploy balancer on balancer
+  hosts: balancers
+  roles:
+    - balancer
+
+- name: deploy phpinfo on webservers
+  hosts: webservers
+  roles:
+    - phpinfo
+</code></pre></div>
+<h4 id="bindbalance-roletemplate">可能出现的错误，提示应该使用bind，这是由于balance role的template 错误<a class="headerlink" href="#bindbalance-roletemplate" title="Permanent link">&para;</a></h4>
+<p>修改办法, 将listen行换行并加上bind</p>
+<div class="highlight"><pre><span></span><code># /home/devops/ansible/roles/balancer/templates/haproxy.cfg.j2
+
+backend app
+<span class="w"> </span> {% for host in groups.balancers %}
+<span class="gd">-   listen {{ daemonname }} 0.0.0.0:{{ listenport }}</span>
+<span class="gi">+   listen {{ daemonname }} </span>
+<span class="gi">+   bind 0.0.0.0:{{ listenport }}</span>
+<span class="w"> </span> {% endfor %}
+</code></pre></div>
+<h3 id="blockrescuealways-lvolwhen-play">创建逻辑卷，考验block/rescue/always, 使用lvol，<code>when</code> 和play对齐<a class="headerlink" href="#blockrescuealways-lvolwhen-play" title="Permanent link">&para;</a></h3>
+<p>使用了block/rescue/always就不需要tasks关键词</p>
+<div class="highlight"><pre><span></span><code>---
+- name: create a logic volume with size of 5000 and format
+  hosts: all
+  block:
+    - name: create logic volume
+      lvol:
+        vg: research
+        lv: data
+        size: 1500
+    - name: fomat data volume
+        filesystem:
+          fstype: ext4
+          dev: /dev/research/data
+  rescue:
+    - name: debug message
+      debug:
+        msg: can&#39;t create a size of 1800
+    - name: create a logical volume with size of 800 and format
+        lvol:
+          vg: research
+          lv: data
+          size: 1500
+    - name: fomat data volume
+        filesystem:
+          fstype: ext4
+          dev: /dev/research/data
+      when: ansible_facts[&#39;lvm&#39;][&#39;vgs&#39;][&#39;research&#39;] is defined
+      ignore_errors: yes
+    - name: debug 2 
+        debug:
+          msg: volume group does not exist
+      when: ansible_facts[&#39;lvm&#39;][&#39;vgs&#39;][&#39;research&#39;] is undefined
+</code></pre></div>
+<h3 id="hosts-jinija-forinventory">创建hosts文件， 考验jinija 的for循环和读inventory文件<a class="headerlink" href="#hosts-jinija-forinventory" title="Permanent link">&para;</a></h3>
+<p>取facts变量的方法参考balancer的模板： 
+/home/ansible/roles/balancer/roles/template/haproxy.cfg.j2</p>
+<p>基于给的hosts.j2 文件修改, 拼凑出<code>ip url alias</code>格式，分别对应 default_ipv4.address, fqdn, hostname<br />
+ansible_facts在hostvars[host]中</p>
+<div class="highlight"><pre><span></span><code># 取
+{% for host in groups.all %}
+{{ hostvars[host][&#39;ansible_facts&#39;] *忽露不写了* }} × × 
+{% endfor %}
+--- 
+
+创建playbook的要小心，题目要求生成所有主机的纪录，所以hosts是all, 但只部署在dev组的主机上要加when,   
+要加`when: &#39;dev&#39; in group_names`
+
+```yml
+---
+- name: gen hosts and deploy on dev group
+  tasks:
+    - name: gen hosts and deploy
+        template:
+          src: hosts.j2
+          dest: /etc/myhosts
+      when: &quot;&#39;dev&#39; in group_names&quot;
+</code></pre></div>
+<h3 id="web-server-setypehttpd_system_content_t">创建web server, 注意将文件标注setype为httpd_system_content_t<a class="headerlink" href="#web-server-setypehttpd_system_content_t" title="Permanent link">&para;</a></h3>
+<p>通过man semanager-fcontext 查询setype, 或者使用<code>ls -ldZ</code>来查询selinux标签</p>
+<p>创建文件，目录、链接都用file模块，但操作文件内容用copy模块
+创建组用group模块,创建用户用user模块
+容易搞反的链接的src是指向的文件，所以是/webdev, 可以看帮助文档</p>
+<div class="highlight"><pre><span></span><code><span class="gs">---</span>
+<span class="gd">- name: create web server</span>
+<span class="w"> </span> hosts: webservers
+<span class="w"> </span> tasks:
+<span class="w"> </span>   - name: add group
+<span class="w"> </span>       group:
+<span class="w"> </span>          name: webdev
+<span class="w"> </span>          state: present
+<span class="w"> </span>   - name: create directory
+<span class="w"> </span>       file:
+<span class="w"> </span>         path: /webdev
+<span class="w"> </span>         group: webdev
+<span class="w"> </span>         state: directory
+<span class="w"> </span>         mode: u+rwx,g+rwxs,o-rx
+<span class="w"> </span>-        setype: httpd_system_content_t
+<span class="w"> </span>   - name: create a symbolic link
+<span class="w"> </span>       file:
+<span class="w"> </span>-        src: /var/www/html/webdev
+<span class="w"> </span>-        dest: /webdev
+<span class="w"> </span>+        src: /webdev
+<span class="w"> </span>+        dest: /var/www/html/webdev
+<span class="w"> </span>         state: link
+<span class="w"> </span>   - name: create index.html
+<span class="w"> </span>       copy:
+<span class="w"> </span>         content: Development
+<span class="w"> </span>         dest: /var/www/html/webdev/index.html
+<span class="gi">+         setype: httpd_system_content_t                    </span>
+</code></pre></div>
+<h3 id="loopsitem-regexslineinfile">创建硬件报告，用到loops进行数组循环，内置变量item和 regexs匹配，lineinfile 进行文件编辑<a class="headerlink" href="#loopsitem-regexslineinfile" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>---
+- name: generate hw report
+  hosts: all
+  vars:
+    hw_all:
+      - hw_name: HOST
+        hw_content: &quot;{{ ansible_facts[&#39;hostname&#39;] }}&quot;
+      - hw_name: BIOS_version
+        hw_content: &quot;{{ ansible_facts[&#39;bios_version&#39;] }}&quot;
+</code></pre></div>
+<h3 id="ansible-vault">创建加密文件，用到ansible-vault命令<a class="headerlink" href="#ansible-vault" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>ansible-vault encrypt lock.yml --vault-password-file=secret.txt 
+</code></pre></div>
+<h3 id="ansible-playbook-vault-password-filesecrettxt">添加用户， ansible-playbook 通过 --vault-password-file=secret.txt 来传密码文件<a class="headerlink" href="#ansible-playbook-vault-password-filesecrettxt" title="Permanent link">&para;</a></h3>
+<p>通过<code>vars_files</code>来读取变量文件， loop 来循环遍历数组变量， 然后模板直接取密码后用'| password_hash('sha512')' 来加密密码
+通常情况下在playbook中，开头位置引用一个变量时都需要"{{ variable }}"， 但是在when块里，则直接使用 variable。 另外字符串要用“string”  </p>
+<p>创建用户时， 指定附属组用groups, 主要组是group</p>
+<div class="highlight"><pre><span></span><code>- {{ variable }} ## 错误
+key: {{ variable }} ## 错误
+- &quot;{{ variable}}&quot; ## 正确
+key: &quot;{{ variable }}&quot; ## 正确
+</code></pre></div>
+<p>结果
+<div class="highlight"><pre><span></span><code><span class="gs">---</span>
+<span class="gd">- name: create user on dev,test</span>
+<span class="w"> </span> hosts: dev,test
+<span class="w"> </span> vars_files:
+<span class="w"> </span>   - lock.yml
+<span class="w"> </span>   - user_list.yml
+<span class="w"> </span> tasks:
+<span class="w"> </span>   - name: create group devops
+<span class="w"> </span>     group:
+<span class="w"> </span>       name: devops
+<span class="w"> </span>       state: present
+<span class="w"> </span>   - name: create user 
+<span class="w"> </span>     user:
+<span class="w"> </span>       name: &quot;{{ item.name }}&quot;
+<span class="gd">-       group: devops</span>
+<span class="gi">+       groups: devops        </span>
+<span class="w"> </span>       password: &quot;{{ pw_developer | password_hash(&#39;sha512&#39;) }}&quot;
+<span class="w"> </span>     loop: &quot;{{ user }}&quot;
+<span class="gd">-     when: &quot;{{ item.job }}&quot; == developer</span>
+<span class="gi">+     when: item.job == &quot;developer&quot;</span>
+<span class="gd">- name: create user on prod</span>
+<span class="w"> </span> hosts: prod
+<span class="w"> </span> vars_files:
+<span class="w"> </span>   - lock.yml
+<span class="w"> </span>   - users_list.yml
+<span class="w"> </span> tasks:
+<span class="w"> </span>   - name: create group manager
+<span class="w"> </span>     group:
+<span class="w"> </span>       name: manager
+<span class="w"> </span>       state: present
+<span class="w"> </span>   - name: create user
+<span class="w"> </span>     user:
+<span class="w"> </span>       name: &quot;{{ item.name }}&quot;
+<span class="w"> </span>       groups: manager
+<span class="w"> </span>       password: &quot;{{ pw_manager | password_hash(&#39;sha512&#39;) }}&quot;
+<span class="w"> </span>     loop: &quot;{{ user }}&quot;
+<span class="gd">-     when: &quot;{{ item.job }}&quot; == manager</span>
+<span class="gi">+     when: item.job == &quot;manager&quot;</span>
+</code></pre></div></p>
+<h3 id="ansible-vault-rekey">修改密码, 使用<code>ansible-vault rekey</code> 修改密码，或者先解密后加密<a class="headerlink" href="#ansible-vault-rekey" title="Permanent link">&para;</a></h3>
+<h3 id="copywhen">修改文件内容, 使用copy模块，以及when条件判断<a class="headerlink" href="#copywhen" title="Permanent link">&para;</a></h3>
+<p>在playbook的内建变量 inventory_hostname 表示定义在inventory里的主机名称<br />
+也可以使用ansible_facts['hostname'],前提是被管理节点的hostname必须如果管理节点定义名称一样。 因为后者是到被管理节点获取。</p>
+<p>使用when 限定条件， 满足条件才能执行这个task
+<div class="highlight"><pre><span></span><code>---
+- name: create issue
+  hosts: all
+  tasks:
+    - name: create issue file
+      copy:
+        content: &quot;Development&quot;
+        dest: /etc/issue
+      when: inventory_name in groups.dev  
+</code></pre></div></p>
+<h3 id="_3">第二次排错<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<h4 id="ansible-galaxy-srcname">ansible-galaxy 安装角色, 指定方法分别是 src/name<a class="headerlink" href="#ansible-galaxy-srcname" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>- src: files/5/balancer.tar
+  name: balancer
+- src: files/5/phpinfo.tar
+  name: phpinfo
+</code></pre></div>
+<h3 id="timesync-doc-timedatectl-system-clock-syncronize-yes">timesync 看doc 示例， 验证方法是看timedatectl 看system clock syncronize 为 yes<a class="headerlink" href="#timesync-doc-timedatectl-system-clock-syncronize-yes" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>---
+- name: use timesync role
+  hosts: all
+  vars:
+    timesync_ntp_servers:
+      - hostname: 
+        iburst: yes
+  roles:
+    - rhel_system_roles.timesync
+</code></pre></div>
+<h3 id="hosts-for-host-in-groupsall-hostvarshostansible_facts-endfor">创建hosts, 要用 {% for  host in groups.all %} {{ hostvars[host].ansible_facts }} {% endfor %}<a class="headerlink" href="#hosts-for-host-in-groupsall-hostvarshostansible_facts-endfor" title="Permanent link">&para;</a></h3>
+<h3 id="firewalldimmediate">使用firewalld模块时，需要指定immediate 参数，确保能立即生效<a class="headerlink" href="#firewalldimmediate" title="Permanent link">&para;</a></h3>
+<h3 id="urwxgrwxsorw-urwx">设置文件的权限时，应使用u=rwx,g=rwxs,o=rw, 而不是u+rwx，原因很好理解<a class="headerlink" href="#urwxgrwxsorw-urwx" title="Permanent link">&para;</a></h3>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+      
+    </article>
+  </div>
+
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+        
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../sql%E4%BC%98%E5%85%88%E7%BA%A7%E9%97%AE%E9%A2%98/" class="md-footer__link md-footer__link--prev" aria-label="上一页: SQL优先级问题">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                SQL优先级问题
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../linux-%E4%B8%AD%E6%96%AD%E8%AF%B7%E6%B1%82/" class="md-footer__link md-footer__link--next" aria-label="下一页: Linux 中断请求">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                Linux 中断请求
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../js/tex-mml-chtml.js"></script>
+      
+        <script src="../../js/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

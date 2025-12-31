@@ -1,0 +1,1195 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://energygreek.github.io/notes/blog/%E9%9A%8F%E8%BA%ABwifi%E5%B7%A5%E5%85%B7%E5%88%B7%E6%9C%BA/">
+      
+      
+        <link rel="prev" href="../pve%E5%85%A5%E9%97%A8/">
+      
+      
+        <link rel="next" href="../linux%E5%88%9B%E5%BB%BA%E7%83%AD%E7%82%B9/">
+      
+      
+        
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="RSS 订阅" href="../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="已更新内容的 RSS 订阅" href="../../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>随身wifi工具刷机 - Some Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#wifi" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="Some Notes" class="md-header__button md-logo" aria-label="Some Notes" data-md-component="logo">
+      
+  <img src="../../assets/bird.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Some Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              随身wifi工具刷机
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="gray" data-md-color-accent="blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../tags/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tag
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Some Notes" class="md-nav__button md-logo" aria-label="Some Notes" data-md-component="logo">
+      
+  <img src="../../assets/bird.png" alt="logo">
+
+    </a>
+    Some Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Blog
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_2" id="__nav_1_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    归档
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    归档
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2025
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2024/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2024
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2023/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2023
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2022/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2022
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2021/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2021
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2020/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2020
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2019/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2019
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tag
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        依赖
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        切卡
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        刷机
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基带
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="基带">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        恢复基带文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重启modem
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        短信收发和转发邮件
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        救砖
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="救砖">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#edl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        edl使用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        恢复分区
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        参考
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    回到主页
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    元数据
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2023-09-08 00:00:00+00:00" class="md-ellipsis">2023年9月8日</time>
+                      </div>
+                    </li>
+                    
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              需要 3 分钟阅读时间
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+            
+          </nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+  
+
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:debian" class="md-tag">debian</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:tool" class="md-tag">tool</a>
+      
+    
+  </nav>
+
+
+
+<h1 id="wifi">随身wifi工具刷机<a class="headerlink" href="#wifi" title="Permanent link">&para;</a></h1>
+<p>本文记录了淘宝卖的随身wifi刷机成Debian，还能收发短信。还有救砖的艰辛过程，不过结局美满。</p>
+<h2 id="_1">依赖<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>edl备份恢复工具，https://github.com/bkerler/edl, 下载源代码后执行<code>git submodule update --init --recursive</code>和 <code>pip install -r requirements.txt</code></li>
+<li>openstick编译好的debian https://github.com/OpenStick/OpenStick。 在release页面下载 base.zip, debian.zip, firmware-ufi001c.zip，boot-ufi001c.img</li>
+<li>apt 安装 adb fastboot</li>
+</ul>
+<h2 id="_2">切卡<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>刚接触时看网上的都是在后台页面切卡，但是刷机了没有后台页面如何切卡呢？ 为了切卡又重刷安卓，导致变砖了。参考网上资料发现，Debian下可以直接切。
+<div class="highlight"><pre><span></span><code>debian默认卡槽位1:
+
+echo 1 &gt; /sys/class/leds/sim:sel/brightness
+echo 0 &gt; /sys/class/leds/sim:en/brightness
+echo 0 &gt; /sys/class/leds/sim:sel2/brightness
+echo 0 &gt; /sys/class/leds/sim:en2/brightnessR
+modprobe -r qcom-q6v5-mss
+modprobe qcom-q6v5-mss
+systemctl restart rmtfs
+systemctl restart dbus-org.freedesktop.ModemManager1.service
+
+esim槽位3:
+
+echo 0 &gt; /sys/class/leds/sim:sel/brightness
+echo 0 &gt; /sys/class/leds/sim:en/brightness
+echo 1 &gt; /sys/class/leds/sim:sel2/brightness
+echo 0 &gt; /sys/class/leds/sim:en2/brightness
+modprobe -r qcom-q6v5-mss
+modprobe qcom-q6v5-mss
+systemctl restart rmtfs
+systemctl restart dbus-org.freedesktop.ModemManager1.service
+
+其他两个槽位
+
+槽位2:
+
+echo 0 &gt; /sys/class/leds/sim:sel/brightness
+echo 1 &gt; /sys/class/leds/sim:en/brightness
+echo 0 &gt; /sys/class/leds/sim:sel2/brightness
+echo 0 &gt; /sys/class/leds/sim:en2/brightness
+modprobe -r qcom-q6v5-mss
+modprobe qcom-q6v5-mss
+systemctl restart rmtfs
+systemctl restart dbus-org.freedesktop.ModemManager1.service
+
+槽位4:
+echo 0 &gt; /sys/class/leds/sim:sel/brightness
+echo 0 &gt; /sys/class/leds/sim:en/brightness
+echo 0 &gt; /sys/class/leds/sim:sel2/brightness
+echo 1 &gt; /sys/class/leds/sim:en2/brightness
+modprobe -r qcom-q6v5-mss
+modprobe qcom-q6v5-mss
+systemctl restart rmtfs
+systemctl restart dbus-org.freedesktop.ModemManager1.service
+
+有些棒子esim槽位不一样槽位3不行自行试试槽位2 4
+</code></pre></div>
+https://github.com/OpenStick/OpenStick/issues/49#issuecomment-1568202001</p>
+<h2 id="_3">刷机<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>先使用edl全量备份，方法在最下面。先刷base包，解压base.zip后执行里面的<code>flash.sh</code>。然后刷debian包，解压debian.zip后执行里面的<code>flash.sh</code>。这时进入系统发现可能出现问题（我也没明显感觉到问题），因为他们是ufi001b的。
+所以再刷适配ufi001c的包，解压firmware-ufi001c.zip。
+<div class="highlight"><pre><span></span><code>cd firmware-ufi001c
+adb push ./* /lib/firmware
+adb reboot bootloader
+fastboot flash boot boot-ufi001c.img
+fastboot reboot
+</code></pre></div>
+但是在刷ufi001c的包之前我能找到modem网络，刷完就没了，所以有了下面基带恢复的步骤。</p>
+<h2 id="_4">基带<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>基带文件在随身wifi的modem分区，先用edl备份modem分区。当然下面介绍了edl全量备份，跳过了userdata，估计是root和home目录。</p>
+<h3 id="_5">恢复基带文件<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>我在安装debian系统时，发现移动网络不可用，于是参考网上说的，将原始基带恢复后正常。 基带文件名为"modem.bin", edl全量备份后在dumps目录下。直接mount该文件，然后将modem.*和mba.mbn取出来，当发现刷机后发现移动网络不能使用时，重新拷回去就能用了。
+<div class="highlight"><pre><span></span><code>sudo mount modem.bin /mnt
+</code></pre></div>
+复制到firmware-ufi001c目录，覆盖之前的文件。
+<div class="highlight"><pre><span></span><code>cp /mnt/modem.* .
+cp /mnt/mba.mbn .
+</code></pre></div></p>
+<p>再次拷贝到wifi棒子的/lib/firmware目录, 配合再刷一次适配001C的boot文件。
+<div class="highlight"><pre><span></span><code>adb push ./* /lib/firmware
+adb reboot bootloader
+fastboot flash boot boot-ufi001c.img
+fastboot reboot #重启
+</code></pre></div></p>
+<p>然后就能找到modem网卡了。</p>
+<h2 id="modem">重启modem<a class="headerlink" href="#modem" title="Permanent link">&para;</a></h2>
+<p>有时重刷了firmware，还是出现没有modem网卡的情况，也就是<code>mmcli -m 0</code>提示找不到modem设备的时候，需要执行下面的命令。或者直接等一会重启ModemManager
+<div class="highlight"><pre><span></span><code>systemctl stop ModemManager
+qmicli -d /dev/wwan0qmi0 --uim-sim-power-off=1 &amp;&amp; qmicli -d /dev/wwan0qmi0 --uim-sim-power-on=1
+systemctl start ModemManager
+</code></pre></div></p>
+<h2 id="_6">短信收发和转发邮件<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>下载两个python文件，地址 https://gitee.com/jiu-xiao/ufi-message。配置smtp.py中的邮箱信息，我使用的QQ邮箱登录，然后转发到另一个邮箱。开始发送不成功，修改后能发送了，内容如下。
+<div class="highlight"><pre><span></span><code>#!python3
+
+my_sender=&#39;@qq.com&#39;
+my_user=&#39;@hotmail.com&#39;
+server_address=&#39;smtp.qq.com&#39;
+server_port=465
+server_passwd=&#39;&#39; #填写qq邮箱授权码
+
+
+import smtplib
+from email.mime.text import MIMEText
+from email.utils import formataddr
+import datetime
+import time
+
+def mail(text):
+    msg=MIMEText(text,&#39;plain&#39;,&#39;utf-8&#39;)
+    msg[&#39;From&#39;]=formataddr([&quot;随身Wifi&quot;,my_sender])
+    msg[&#39;To&#39;]=formataddr([my_user,my_user])
+    msg[&#39;Subject&#39;]=&quot;转发 &quot;+time.strftime(&quot;%H:%%M:%S %m/%d&quot;)
+
+    server=smtplib.SMTP_SSL(server_address,server_port)
+
+    server.login(my_sender,server_passwd)
+    server.auth_plain()
+    server.sendmail(my_sender,[my_user,],msg.as_string())
+    server.quit()
+</code></pre></div></p>
+<p>然后就能写进crontab自动跑了。</p>
+<h2 id="_7">救砖<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<h3 id="edl">edl使用<a class="headerlink" href="#edl" title="Permanent link">&para;</a></h3>
+<p>github上的开源工具，可以替代Windows那些高通工具，Miko，星海啥的。是我这Linux用户的福音，并且简单，windows常常失败。
+使用edl工具之前要先重启到edl也就是9008模式，使用命令<code>adb reboot edl</code>，不需要按RST键。</p>
+<p>备份：推荐第一种方式，第二种方式生成的一个文件刷到另一个设备失败，但是可以刷MiKo导出的单文件。
+<div class="highlight"><pre><span></span><code>edl rl dumps --skip=userdata --genxml
+or
+edl rf flash.bin #单文件
+</code></pre></div></p>
+<p>恢复:
+<div class="highlight"><pre><span></span><code>edl qfil rawprogram0.xml patch0.xml .
+</code></pre></div></p>
+<h3 id="_8">恢复分区<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>刷了debian后，分区会变，这样导致有些分区不存在所以无法刷回去。这里介绍下恢复分区的方法。不过上面的edl恢复应该不需要这个操作。</p>
+<p>备份分区
+<div class="highlight"><pre><span></span><code>./edl gpt . --genxml
+</code></pre></div>
+备份后有两个文件，恢复时只用gpt_main0.bin文件，恢复分区命令
+<div class="highlight"><pre><span></span><code>./edl w gpt gpt_main0.bin
+</code></pre></div>
+打印分区来验证下</p>
+<div class="highlight"><pre><span></span><code>./edl printgpt
+</code></pre></div>
+<h2 id="_9">参考<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>https://forum.openwrt.org/t/uf896-qualcomm-msm8916-lte-router-384mib-ram-2-4gib-flash-android-openwrt/131712/160
+https://www.kancloud.cn/handsomehacker/openstick/2636505</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+      
+    </article>
+  </div>
+
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+        
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../pve%E5%85%A5%E9%97%A8/" class="md-footer__link md-footer__link--prev" aria-label="上一页: pve入门">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                pve入门
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../linux%E5%88%9B%E5%BB%BA%E7%83%AD%E7%82%B9/" class="md-footer__link md-footer__link--next" aria-label="下一页: Linux创建热点">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                Linux创建热点
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../js/tex-mml-chtml.js"></script>
+      
+        <script src="../../js/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>
