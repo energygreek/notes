@@ -32,6 +32,8 @@ iperf -s
 ```
 
 ## dpdk bonding
+
+![Bonding mode](img/bonding.png)
 要在dpdk-testpmd创建1个bond网卡，转发bond网卡和tap之间的流量。启动时要注意EAL日志，参数写错了会报错了。
 ```sh
 # ./dpdk-testpmd -l 0-3 -n 4  --vdev=net_tap0,iface=tap0 -- -i --port-topology=chained
@@ -89,4 +91,54 @@ testpmd> start
 6. 修改Bond模式
 ```
 set bonding mode 3 2
+```
+
+
+## using nmcli to create bond device
+
+```sh
+nmcli connection add type bond con-name bond0 ifname bond0 bond.options "mode=active-backup"
+nmcli connection add type bond con-name bond0 ifname bond0 bond.options "mode=4"
+nmcli connection add type ethernet slave-type bond con-name bond0-port1 ifname enp9s0 master bond0
+nmcli connection add type ethernet slave-type bond con-name bond0-port2 ifname enp10s0 master bond0
+
+nmcli connection modify bond0-port1 ipv4.method disabled ipv6.method disabled
+nmcli connection modify bond0-port2 ipv4.method disabled ipv6.method disabled
+
+nmcli connection modify bond0   ipv4.addresses 10.13.32.200/24 ipv4.gateway 10.13.32.1
+
+---
+
+nmcli connection add type bond con-name bond1 ifname bond1 bond.options "mode=active-backup"
+nmcli connection add type ethernet slave-type bond con-name bond1-port1 ifname enp7s0d2 master bond1
+nmcli connection add type ethernet slave-type bond con-name bond1-port2 ifname enp7s0d3 master bond1
+
+nmcli connection modify bond1-port1 ipv4.method disabled ipv6.method disabled
+nmcli connection modify bond1-port2 ipv4.method disabled ipv6.method disabled
+
+nmcli connection modify bond1   ipv4.addresses 10.13.31.200/24 ipv4.gateway 10.13.31.1
+```
+
+
+HOST Machine
+```sh
+#Bond1 32.200
+i40e 0001:08:00.0 enP1s6f0: renamed from eth0
+i40e 0001:08:00.1 enP1s6f1: renamed from eth0
+
+#Bond0  31.200
+rnpm 0000:05:00.1 ens2f1d2: NIC Link is Up 10 Gbps, Flow Control: RX/TX
+rnpm 0000:05:00.1 ens2f1d3: NIC Link is Up 10 Gbps, Flow Control: RX/TX
+```
+
+Virtual Machine
+
+```sh
+#bond0  31.200
+rnpm 0000:05:00.0 enp5s0d2: renamed from eth2 
+rnpm 0000:05:00.0 enp5s0d3: renamed from eth3
+
+#bond1  32.200
+i40e 0000:06:00.0 enp6s0: renamed from eth1
+i40e 0000:07:00.0 enp7s0: renamed from eth0
 ```

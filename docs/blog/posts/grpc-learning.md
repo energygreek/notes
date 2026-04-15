@@ -1,5 +1,6 @@
 ---
-title: grpc 学习
+title: grpc 总结
+draft: false
 date: 2021-04-13
 tags: [grpc,c,cpp]
 ---
@@ -8,32 +9,32 @@ tags: [grpc,c,cpp]
 rpc 意为`远程过程调用`, http, grpc 广义上讲都是rpc。
 而且还有个项目叫[grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway), 可以将grpc通过http的方式暴露。
 
-# grpc
+# grpc 与 http2的区别
+grpc 是rpc的一种实现，由google开源，其他还有thrift, SOGORPC 等等。 并且grpc使用的http/2协议来传输数据。RPC是面向调用（methods），而不是RESTful的面向资源（JSON）。
 
-grpc 是rpc的一种实现，由google开源，其他还有thrift, sogorpc 等等。 并且grpc使用的http/2协议
 
 ## http/1.1 与 http/2 的区别
 
-* 2使用二进制，而1.1使用文本，提高效率
-* 2将相同的tcp连接合并为一个请求，提高性能,而1.1则为每个请求创建tcp连接
-* 2的客户端使用流，这样可以多次请求
-* 2含有trailers，也就是尾部消息，可以用来发送body的checksume等, 当然也可以直接放到body里
+* 2使用预先定义好的protobuf，而1.1使用可读的字符串例如JSON，提高效率
+* 2将相同的tcp连接合并为一个请求，提高性能,而1.1使用了多路复用技术，http/1则每个请求创建tcp连接，但http/1.1依旧会遇到传统问题，前个请求阻塞后面的所有请求。
+* 2的客户端使用抽象概率”流“，流发送的消息相互独立, 不同的stream-id和不同的protobuf，底层tcp再将流的消息分片传输。
+* 2含有trailers，也就是尾部消息，可以用来发送body的checksum等, 当然也可以直接放到body里
 ...
 
-而1.1中也已经实现服务端到客户端的流,使用'Transfer-Encoding=chunked'来替代'Content-Length'，详见[rfc](https://datatracker.ietf.org/doc/html/rfc7230#section-3.3.2)
+* http/1.1中也已经实现服务端到客户端的流,使用'Transfer-Encoding=chunked'来替代'Content-Length'，详见[rfc](https://datatracker.ietf.org/doc/html/rfc7230#section-3.3.2)
 ```
  A sender MUST NOT send a Content-Length header field in any message
    that contains a Transfer-Encoding header field.
 ```
 
+* http/1.1中的websocket可以服务器直接向客户端发送消息，而虽http2支持一请求多响应，但是第一次需要客户端发起。所以http2不能完全替代websocket。
+
 ## 认识proto文件
 
 ### proto 文件中多个service和单个service 区别
 
-在同一个service里的方法会codegen到同一个类，但这个类比较鸡肋。
-由于RPC调用是RESTful的，所以多次调用或者多个rpc方法无法通过同一个service来共享数据，这需要使用者借助其他办法来解决。
-
-service 还可以用以隔离相同名称的rpc， 如 
+在同一个service里的方法会codegen到同一个类，但这个类比较鸡肋。多次调用或者多个rpc方法无法通过同一个service来共享数据，这需要使用者借助其他办法来解决。  
+但service 还可以用以隔离相同名称的rpc， 如 
 - service1/helloworld
 - service2/helloworld
 

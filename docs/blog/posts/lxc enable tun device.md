@@ -37,7 +37,7 @@ lxc.mount.entry: /dev/net dev/net none bind,create=dir
 ```
 
 ## lxc enable fuse
-当lxc挂载webdav文件系统时，依赖fuse 驱动，可以在pve的lxc选项里添加feature。 [参考](https://forum.proxmox.com/threads/persistently-use-fuse-inside-of-lxc-container.95810/) 
+当lxc挂载 webdav 文件系统时，依赖fuse 驱动，可以在pve的lxc选项里添加feature。 [参考](https://forum.proxmox.com/threads/persistently-use-fuse-inside-of-lxc-container.95810/) 
 
 ## 参考
 

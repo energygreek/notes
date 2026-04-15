@@ -102,12 +102,59 @@ main:
 ---栈顶
 ```
 
+```
+// Source - https://stackoverflow.com/a/60647408
+// Posted by Zeno of Elea
+// Retrieved 2026-01-23, License - CC BY-SA 4.0
+
+previous frame base
+<Any automatics variables>
+<Any passed variables to the current function passed the first 6th>
+return address
+new frame base
+<Any automatics>
+rsp
+```
+
+higher address
+│
+│  caller frame
+│
+├────────────────────
+│ return address       ← used by `ret`
+├────────────────────
+│ saved rbp            ← old frame pointer
+├────────────────────  ← rbp
+│ local variables
+│ buffers
+│ etc.
+└────────────────────  ← rsp (lower address)
+
 rbp表示基地址指针，指向的是函数栈的起始地址，这个起始地址只是对于当前函数而言的  
 rsp表示栈顶指针，指向当前的栈顶  
 每次函数调用时(main 函数被内核`_start_main__`调用):
 1. 将调用者的函数栈基地址保存起来   
 2. 参数压栈, 可能由调用者压栈，可能由被调用者压栈，影响的是当前的栈顶，继而栈顶影响rbp
 3. 将被调用函数当前的栈顶复制给基地址寄存器。新的rbp == rsp即当前的栈顶。相当于构造了新的函数运行环境
+
+## rip register
+rip point to the current instruction, when call function foo, rip is saved as 'return address', after finish calling foo, rip is resigned to saved 'return address'.
+
+caller call foo
+```asm
+call foo
+```
+
+after foo finished and ret
+```asm
+ret
+```
+
+caller recover rip and rbp
+```
+rip = *(rsp)
+rsp += 8
+```
 
 ## rbp和rsp
 实例代码，main函数中调用foo函数。
@@ -157,6 +204,8 @@ End of assembler dump.
 ```
 
 
+## 参考
+
 附录
 ```
 General-Purpose Registers
@@ -199,7 +248,4 @@ Usage during syscall/function call:
     The called routine is expected to preserve rsp,rbp, rbx, r12, r13, r14, and r15 but may trample any other registers.
 ```
 
-
-
-## 参考
 https://shikaan.github.io/assembly/x86/guide/2024/09/08/x86-64-introduction-hello.html

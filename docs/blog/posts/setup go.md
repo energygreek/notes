@@ -2,7 +2,7 @@
 draft: true
 comments: true
 date: 2025-12-11
-tags: []
+tags: [golang]
 ---
 
 # setup go
@@ -56,3 +56,18 @@ func main() {
 
 ## build
 run command `go mod tidy` first or directly run `go build` will automaticlly download dependency
+
+## issue
+### package gioui.org/example: build constraints exclude all Go files in gio-example
+It means `go build` command should not run at the root directory. after cd to hello directory then `go build' runs sucessfully.
+
+### expected statement, found 'else'syntax
+`else` must follow `}` in the same line
+
+```go
+if err != nil {
+
+} else {
+
+}
+```
