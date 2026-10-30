@@ -18,5 +18,5 @@ jobs:
         with:
           key: ${{ github.ref }}
           path: prime-numbers
-      - run: pip install mkdocs-material mkdocs-roamlinks-plugin pymdown-extensions mkdocs-rss-plugin
+      - run: python -m pip install --upgrade mkdocs mkdocs-material mkdocs-roamlinks-plugin pymdown-extensions mkdocs-rss-plugin
       - run: mkdocs gh-deploy --force
